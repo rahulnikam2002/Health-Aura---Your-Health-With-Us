@@ -1,0 +1,113 @@
+@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;800;900&display=swap);
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #3A62FF;
+    --white: #fff;
+    --light-text-color: #7D7D7D;
+    --dark-color: #000;
+    --grey-color: #F0EEEE;
+    --grey-text-color: #5a5a5a;
+}
+
+i, ion-icon, a, div, p, h1, h2, h3, li, section {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.loginPage {
+    height: 100vh;
+}
+
+.upperLoginSection {
+    height: 40vh;
+    background-color: var(--primary);
+    position: relative;
+}
+
+.goBackBtn {
+    color: var(--white);
+    font-size: 35px;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    cursor: pointer;
+}
+
+.pageTitleText {
+    color: var(--white);
+    position: absolute;
+    top: 41%;
+    left: 8%;
+}
+
+.lowerLoginSection {
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    width: 100%;
+    margin: 50px auto;
+}
+
+.loginForm {
+    width: 80%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.loginForm form input {
+    width: 100%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid var(--grey-color);
+    outline: none;
+    font-size: 21px;
+    font-family: poppins;
+    padding: 10px 60px;
+    margin: 15px auto;
+}
+
+.formFields ion-icon {
+    position: absolute;
+    font-size: 30px;
+    top: 25px;
+    left: 10px;
+    color: var(--grey-text-color);
+}
+
+.passwordField ion-icon {
+    top: 186px;
+}
+
+.loginForm form input[type=submit] {
+    background-color: var(--primary);
+    color: var(--white);
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.createAccMsg{
+    text-align: center;
+    font-size: 18px;
+    margin: 10px 0px
+}
+
+.span-createAccMsg, .span-createAccMsg a{
+    color: var(--primary);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.emailField ion-icon{
+    top: 110px;
+}

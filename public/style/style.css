@@ -1,0 +1,881 @@
+@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;800;900&display=swap);
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #3A62FF;
+    --white: #fff;
+    --light-text-color: #7D7D7D;
+    --dark-color: #000;
+    --grey-color: #F0EEEE;
+    --grey-text-color: #5a5a5a;
+}
+
+i, ion-icon, a, div, p, h1, h2, h3, li, section {
+    -webkit-tap-highlight-color: transparent;
+}
+
+header {
+    background-color: var(--primary);
+    height: 25vh;
+    width: 100%;
+}
+
+a {
+    color: var(--dark-color);
+    text-decoration: none;
+}
+
+ul>li {
+    list-style: none;
+}
+
+.heading {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+.normalText {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--dark-color);
+}
+
+.title {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--dark-color);
+}
+
+.smallText {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--dark-color);
+}
+
+.headerArea {
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    position: relative;
+    top: 20%;
+}
+
+.menuIcon {
+    position: relative;
+    right: 25%;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.searchbarSection {
+    max-width: 88%;
+    margin: auto;
+}
+
+.searchBar-Homepage {
+    display: flex;
+    align-items: center;
+    background-color: var(--white);
+    box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+    padding: 4px 14px;
+    border-radius: 10px;
+    position: relative;
+    bottom: 30px;
+}
+
+.searchIcon {
+    color: var(--primary);
+    font-size: 35px;
+    position: relative;
+    top: 2px;
+}
+
+.searchText {
+    font-size: 19px;
+    color: var(--light-text-color);
+    padding-left: 12px;
+    position: relative;
+    bottom: 1px;
+}
+
+.health_cat-home {
+    max-width: 100%;
+    margin: 10px auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.box {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 6px;
+    padding: 15px 0px;
+    margin: 10px;
+    width: 27%;
+    cursor: pointer;
+}
+
+.box img {
+    width: 45px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.box p {
+    text-align: center;
+    padding: 9px 0px 2px 0px;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.bannerarea {
+    max-width: 95%;
+    margin: 10px auto;
+}
+
+.bannerImage-Home img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.ourMedicals-Home {
+    max-width: 95%;
+    margin: auto;
+}
+
+.medicalaInfoSection {
+    background-color: var(--grey-color);
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.CTA-btn button {
+    background-color: var(--primary);
+    padding: 11px;
+    color: var(--white);
+    font-size: 13px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    font-family: poppins;
+}
+
+.medicalText {
+    margin-left: 10px;
+    width: 64%;
+}
+
+.ourMedicalInfo {
+    padding: 10px 10px 10px 0px;
+    font-size: 13px;
+}
+
+.ourServices {
+    margin: 20px 0px;
+}
+
+.ourServicesHomeHeading .heading {
+    margin: 0px 22px;
+}
+
+.divider {
+    width: 100%;
+    height: 2px;
+    background-color: var(--grey-color);
+    margin: 15px 0px;
+}
+
+.company-Branding {
+    text-align: center;
+}
+
+.footerMenu, .copyRight-tnc {
+    max-width: 90%;
+    margin: 10px auto 23px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.footerMenu-Title {
+    margin: 10px 0px;
+}
+
+.footer-li a {
+    color: var(--grey-text-color)
+}
+
+.copyRight-tnc {
+    margin: 20px auto;
+}
+
+/* Search Page */
+
+.cancelBtn-searchPage ion-icon {
+    font-size: 35px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.cancelBtn-searchPage {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.searchInput {
+    max-width: 95%;
+    margin: auto;
+    position: relative;
+}
+
+.searchInput form input {
+    width: 100%;
+    padding: 13px 53px;
+    border-radius: 8px;
+    outline: none;
+    font-size: 19px;
+    font-family: 'Poppins';
+    border: 1px solid var(--light-text-color);
+}
+
+.searchInput form button[type=submit] {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 33px;
+    background-color: transparent;
+    border: none;
+    color: var(--grey-text-color);
+    cursor: pointer;
+}
+
+.searchIcon-hospitalSearch {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 33px;
+    color: var(--primary)
+}
+
+.userLocationDetector {
+    max-width: 95%;
+    margin: 15px auto;
+    display: flex;
+    cursor: pointer;
+}
+
+.userLocationDetector ion-icon {
+    color: var(--primary);
+    font-size: 30px;
+    position: relative;
+    top: 3px;
+    margin-right: 5px;
+}
+
+.locationDetector {
+    color: var(--primary);
+}
+
+.advanceSearchHeading {
+    margin: 10px auto;
+    text-align: center;
+    max-width: 95%;
+}
+
+.advanceSearchInput form input {
+    width: 100%;
+    padding: 14px 10px 14px 53px;
+    border-radius: 8px;
+    font-size: 19px;
+    border: 1px solid var(--light-text-color);
+    margin: 10px 0px;
+    outline: none;
+    font-family: poppins;
+}
+
+.advanceSearchInput ion-icon {
+    font-size: 35px;
+    position: absolute;
+    top: 18px;
+    left: 8px;
+    color: var(--primary);
+}
+
+.userTreatmentName, .userCityName {
+    position: relative;
+}
+
+.submit-advanceSearch button {
+    width: 100%;
+    padding: 14px 0px;
+    border-radius: 8px;
+    font-size: 19px;
+    text-align: center;
+    cursor: pointer;
+    background-color: var(--primary);
+    border: none;
+    outline: none;
+    color: var(--white);
+    font-family: poppins;
+    margin-top: 10px;
+}
+
+.advanceSearchInput form {
+    margin: 20px 0px 10px 0px;
+}
+
+.dividerSearchPage {
+    margin: 20px 0px;
+}
+
+.boxMedicaDoctor {
+    max-width: 95%;
+    margin: 15px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.box-common-hda {
+    text-align: center;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 6px;
+    padding: 9px 20px;
+    font-weight: 600;
+    font-size: 12px;
+    width: 30%;
+    cursor: pointer;
+}
+
+.box-common-hda img {
+    width: 45px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.searchPage-hospital {
+    height: 100vh;
+    display: none;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    background-color: var(--white);
+    overflow: hidden;
+    left: -100px;
+    animation: slide 0.5s forwards ease-in-out;
+}
+
+@keyframes slide {
+    100% {
+        left: 0;
+    }
+}
+
+
+.homeIcon-bm img {
+    width: 50px;
+    display: block;
+    margin: 0px auto;
+}
+
+.bottomMenuItems {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.bottomMenu {
+    background-color: var(--white);
+    width: 100%;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 20px 0px;
+    position: fixed;
+    bottom: 0px;
+}
+
+/* Loading Effect */
+
+.showLoading {
+    position: fixed;
+    top: 0px;
+    height: 100vh;
+    width: 100%;
+    display: none;
+}
+
+.loadingScreen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    backdrop-filter: blur(5px) saturate(100%);
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+.loadingEffect img {
+    display: block;
+    margin: 0px auto;
+    width: 100px;
+}
+
+/* SIngle Hospital Page */
+
+.headerSection {
+    background-color: var(--primary);
+    height: 25vh;
+    width: 100%;
+}
+
+.headerContent {
+    height: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: var(--white);
+}
+
+.title-SHP {
+    color: var(--white);
+    font-size: 22px;
+}
+
+.headerContent ion-icon {
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.resultFetchedData p {
+    text-align: center !important;
+    font-weight: 500 !important;
+    padding: 25px 0px 10px 0px;
+}
+
+.HospitalsListCompnent {
+    background-color: var(--white);
+    position: relative;
+    bottom: 50px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+
+.H-singlecardImage {
+    width: 34%;
+    max-height: 100%;
+}
+
+.H-singlecardImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.H-singleCardInfo {
+    width: 59%;
+    margin: 0px 10px;
+}
+
+.hospitalCardUpper {
+    display: flex;
+    justify-content: space-between;
+    max-width: 95%;
+    margin: auto;
+}
+
+.H-singleHospitalTitle {
+    font-size: 17px;
+    font-weight: 550;
+}
+
+.H-singleCardInfo p {
+    font-size: 15px;
+}
+
+.hospitalCardLower {
+    display: flex;
+    max-width: 95%;
+    margin: 10px auto;
+}
+
+.hospitalCardLower button {
+    width: 100%;
+    background: var(--primary);
+    border: none;
+    padding: 10px 0px;
+    color: var(--white);
+    font-family: 'Poppins';
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.hospitalCardLower button a {
+    color: var(--white);
+}
+
+.H-callNow {
+    background-color: var(--grey-color) !important;
+    color: var(--primary) !important;
+    margin-right: 5px;
+}
+
+.H-callNow a {
+    color: var(--primary) !important;
+}
+
+.H-getDetails {
+    margin-left: 5px;
+}
+
+/* SHP */
+
+.SHP-header {
+    background-color: var(--primary);
+}
+
+.headerContent-SHP {
+    height: 25vh;
+    position: relative;
+}
+
+.headerContent-SHP ion-icon {
+    color: var(--white);
+    font-size: 30px;
+    cursor: pointer;
+    position: absolute;
+    top: 40px;
+    left: 20px;
+}
+
+.SHP-title {
+    text-align: center;
+    color: var(--white);
+    position: absolute;
+    top: 40px;
+    left: 40%;
+}
+
+.SHP-doc-add-info, .SDP-doc-info-img{
+    max-width: 90%;
+    margin: auto;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: -50px;
+    margin-bottom:  30px;
+    backdrop-filter: blur(14px) saturate(100%);
+        background-color: rgb(255 255 255 / 26%);
+}
+
+.doc-ad-infoComponent, .SDP-doc-infoComponent{
+    display: flex;
+    align-items: center;
+}
+
+.SHP-docAdd {
+    display: flex;
+    align-items: center;
+    color: var(--primary);
+    font-size: 12px;
+}
+
+.SHP-docAdd ion-icon {
+    font-size: 16px;
+}
+
+.SHP-docNameAdd {
+    width: 84%;
+    padding: 0px 10px;
+}
+
+.SHP-docNameAdd h1 {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.SHP-callToDoc {
+    background-color: var(--primary);
+    border-radius: 6px;
+    color: var(--white);
+    width: 16%;
+    height: 57px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    cursor: pointer;
+}
+
+.SHP-callToDoc a {
+    color: var(--white);
+    position: relative;
+    top: 3px;
+}
+
+.SHP-allHospitalImages{
+    margin-left: 5%;
+}
+
+.SHP-allHospitalImages img{
+    border-radius: 10px;
+    margin: 0px 10px;
+}
+
+.SHP-AboutHospital{
+    max-width: 90%;
+    margin: 30px auto;
+    padding: 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 10px;
+}
+
+.SHP-AboutHospital h2{
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--primary);
+    margin: 5px 0px;
+}
+
+.SHP-AboutHospital p{
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--dark-color);
+    margin: 5px 0px;
+}
+
+.allTreatments{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.SHP-Treatment p{
+    width: fit-content;
+}
+.SHP-Treatment{
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    padding: 5px 7px;
+    margin: 5px 3px;
+}
+
+.SHP-calltoHospitalBTN a{
+    color: var(--white);
+}
+
+.SHP-calltoHospitalBTN{
+    max-width: 100%;
+    backdrop-filter: blur(5px) saturate(100%);
+    background-color: rgba(255, 255, 255, 0.111);
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    padding: 20px 0px;
+    z-index: 1;
+}
+
+.btnSection{
+    max-width: 90%;
+    margin: auto;
+}
+
+.SHP-calltoHospitalBTN button{
+    background-color: var(--primary);
+    width: 100%;
+    padding: 10px 0px;
+    border: none;
+    border-radius: 10px;
+    color: var(--white);
+    font-size: 18px;
+    font-family: poppins;
+    cursor: pointer;
+
+}
+
+
+
+/* Doctor Listing Page */
+.singleDocCard{
+    display: flex;
+    align-items: center;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    height: 15vh;
+    border-radius: 10px;
+    margin: 20px 0px;
+}
+
+.leftDocImg{
+    width: 30%;
+    height: 100%;
+}
+
+.leftDocImg img{
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.doctorListi{
+    max-width: 90%;
+    margin: 10px auto;
+}
+
+.docRating{
+    display: flex;
+    align-items: center;
+    margin: 5px 0px
+}
+
+.docRating ion-icon{
+    color: var(--primary);
+    font-size: 20px;
+}
+
+.rightDocInfo{
+    margin: 0px 10px;
+}
+
+.rightDocInfo h1{
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+
+/* SDP */
+.SDP-DocImg img{
+    width: 100%;
+    border-radius: 10px;
+}
+
+.SDP-docName{
+    width: 80%;
+}
+
+.SDP-DocImg{
+    width: 20%;
+}
+
+.SDP-docName h1{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.SDP-docName p{
+    color: var(--primary);
+}
+
+.SDP-doc-infoComponent{
+    padding: 0px 10px;
+}
+
+.doctor-specification{
+    max-width: 90%;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.doctor-specification h2{
+    font-size: 25px;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.doctor-specification p{
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--grey-text-color);
+}
+
+.doc-exp-span {
+    font-size: 17px;
+}
+
+.doc-spec-box{
+    /* background-color: var(--grey-color); */
+    width: 30%;
+    padding: 20px 5px;
+    border-radius: 10px;
+    backdrop-filter: blur(5px) saturate(100%);
+    background-color: rgba(240, 240, 240, 0.75);
+}
+
+.doc-biography, .doc-Specialist, .SDP-doc-add{
+    max-width: 90%;
+    margin: 20px auto;
+}
+
+.doc-biography h2, .doc-Specialist h2, .SDP-doc-add h2{
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--primary);
+    margin: 10px 0px;
+}
+
+.docSpeacItem{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.docSpeacItem p{
+    width: fit-content;
+    padding: 5px 7px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    border-radius: 4px;
+    margin: 5px 7px;
+}
+
+.callDocBtn{
+    background-color: var(--white);
+    padding: 10px 20px;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    border-top: 1px solid var(--light-text-color);
+}
+
+.callDocBtn button{
+    width: 100%;
+    background-color: var(--primary);
+    font-size: 18px;
+    font-family: poppins;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    padding: 10px 0px;
+    color: var(--white);
+    cursor: pointer;
+}
+
+.doc-biography p{
+    font-size: 12px;
+}
+
+.SDP-doc-add{
+    margin: 20px auto 90px auto;
+}
