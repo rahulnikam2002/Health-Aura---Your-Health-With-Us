@@ -55,11 +55,11 @@ exports.registerUser = (req, res) => {
                                 }
                                 else {
                                     const userToken = sign({ result: userEmail }, process.env.SECRET_KEY, {
-                                        expiresIn: '600s'
+                                        expiresIn: '24h'
                                     });
 
                                     res.cookie('userToken', userToken, {
-                                        expires: new Date(Date.now() + 86400*1000), //31536000000
+                                        expires: new Date(Date.now() + 86400 * 1000), //31536000000
                                         httpOnly: true
                                     })
                                     res.redirect('/');
@@ -80,4 +80,50 @@ exports.registerUser = (req, res) => {
 
 
 
+}
+
+
+
+exports.loginUser = (req, res) => {
+    const { userEmail, userPassword } = req.body;
+
+    pool.getConnection((err, connection) => {
+        if (err) {
+            console.log(err);
+            throw err;
+        }
+        else {
+            connection.query('SELECT * FROM healthaura_users WHERE userEmail = ?', [userEmail], (err, data) => {
+                if (err) {
+                    res.render('login.hbs', { message: 'Email or Password is Incorrect, Try again' })
+                }
+                if (data.length == 0) {
+                    res.render('login.hbs', { message: `Email Doesn't exist, Try to register` })
+                }
+                else {
+                    const checkPassword = compareSync(userPassword, data[0].userPassword);
+                    if (checkPassword) {
+                        const userToken = sign({ result: data[0].userEmail }, process.env.SECRET_KEY, {
+                            expiresIn: '24h'
+                        });
+
+                        res.cookie('userToken', userToken, {
+                            expires: new Date(Date.now() + 86400 * 1000), //31536000000
+                            httpOnly: true
+                        })
+                        res.redirect('/');
+                    }
+                    else {
+                        res.render('login.hbs', { message: `Email or Password is Incorrect, Try again` })
+                    }
+                }
+            })
+        }
+    })
+}
+
+
+exports.logoutUser = (req, res) => {
+    res.clearCookie("userToken");
+    res.redirect("/");
 }
