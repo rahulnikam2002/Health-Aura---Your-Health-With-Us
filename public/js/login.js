@@ -57,3 +57,4 @@ const checkPassword = (value) => {
         passwordIcon.style.color = 'var(--grey-text-color)';
     }
 }
+

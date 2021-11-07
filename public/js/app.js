@@ -34,9 +34,9 @@ closeSearchSection.addEventListener('click', () => {
     hospitalSearchPage.style.display = 'none';
 })
 
-goToHospital.addEventListener('click', () => {
-    location.href = '/hospital-listing.html'
-})
+// goToHospital.addEventListener('click', () => {
+//     location.href = '/'
+// })
 
 
 userLocationSelector.addEventListener('click', getUserLocation);

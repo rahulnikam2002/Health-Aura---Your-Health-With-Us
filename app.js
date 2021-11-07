@@ -2,6 +2,7 @@ const express = require('express');
 const mySql = require('mysql');
 const ex_hbs = require('express-handlebars');
 const ejs = require('ejs');
+const bodyParser = require('body-parser');
 const cookieParser = require("cookie-parser");
 require("dotenv").config();
 
@@ -13,7 +14,10 @@ const port = process.env.PORT || 5000;
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.static('public'));
-
+app.use(bodyParser.urlencoded({
+    extended: false
+}))
+app.use(bodyParser.json());
 
 //Template Engines 
 app.engine("hbs", ex_hbs({ extname: '.hbs' }))

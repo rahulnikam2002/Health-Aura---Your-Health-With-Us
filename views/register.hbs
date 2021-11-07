@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="/style/register.css">
+    <section class="loginPage">
+        <div class="upperLoginSection">
+            <div class="goBackBtn">
+                <ion-icon name="arrow-back-outline"></ion-icon>
+            </div>
+            <div class="pageTitleText">
+                <p>Welcome!</p>
+                <h2>Join the family</h2>
+            </div>
+        </div>
+        <div class="lowerLoginSection">
+            <div class="loginForm">
+                <form action="/v1/auth/register" method="POST" autocomplete="off">
+                    <div class="formFields nameField">
+                        <input type="text" autocomplete="off" name="userName" id="userName" placeholder="Full Name">
+                        <ion-icon name="person-outline"></ion-icon>
+                    </div>
+                    <div class="formFields emailField">
+                        <input type="email" autocomplete="off" name="userEmail" id="userEmail" placeholder="Email ID" onkeydown="checkEmail(this.value)">
+                        <ion-icon name="mail-outline" id="emailIcon"></ion-icon>
+                    </div>
+                    <div class="formFields passwordField">
+                        <input type="password" autocomplete="off" name="userPassword" id="userPassword" placeholder="Password" onkeydown="checkPassword(this.value)">
+                        <!-- <ion-icon name="lock-closed-outline"></ion-icon> -->
+                        <ion-icon name="lock-open-outline" id="passwordIcon"></ion-icon>
+                    </div>
+                    <div class="submitField">
+                        <input type="submit" id="" value="Join Family">
+                    </div>
+                </form>
+            </div>
+            <div class="createAccMsg">
+                <p>Already have an account? <span class="span-createAccMsg"><a href="/v1/auth/login">LogIn</a></span></p>
+            </div>
+        </div>
+    </section>
+
+    <script src="/js/login.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
