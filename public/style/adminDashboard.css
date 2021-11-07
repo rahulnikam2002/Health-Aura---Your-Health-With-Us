@@ -1,0 +1,240 @@
+@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;800;900&display=swap);
+body {
+    font-family: 'Poppins', sans-serif !important;
+}
+
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #3A62FF;
+    --white: #fff;
+    --light-text-color: #7D7D7D;
+    --dark-color: #000;
+    --grey-color: #F0EEEE;
+    --grey-text-color: #5a5a5a;
+}
+
+i, ion-icon, a, div, p, h1, h2, h3, li, section {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.db-left {
+    width: 15%;
+    max-height: 100vh;
+    height: 100vh;
+    overflow-y: auto;
+    background-color: var(--primary);
+    scroll-behavior: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* width */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+
+::-webkit-scrollbar-track {
+    background: rgb(255, 255, 255);
+}
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}
+
+.db-left h1 {
+    color: var(--white);
+    font-size: 20px;
+    position: absolute;
+    top: 0px;
+    padding: 10px 0px;
+    left: 0px;
+    width: 100%;
+    text-align: center;
+    background-color: var(--primary);
+    z-index: 1;
+}
+
+.db-left a, p {
+    color: var(--white);
+    text-decoration: none;
+}
+
+.db-left a:hover {
+    color: var(--white);
+}
+
+.dashboard-item {
+    display: flex;
+    /* align-items: center; */
+    color: var(--white);
+    width: 100%;
+    justify-content: space-between;
+    font-size: 17px;
+}
+
+.leftIcon-text {
+    display: flex;
+    /* align-items: center; */
+    color: var(--white);
+}
+
+.menuItems {
+    width: 100%;
+    /* position: relative;
+    top: 15%;
+    z-index: 10; */
+}
+
+.leftDropdownItems {
+    margin: 10px;
+}
+
+.leftIcon-text ion-icon {
+    position: relative;
+    top: 2px;
+    margin-right: 5px;
+    color: var(--grey-color)
+}
+
+.singleDropDown-Text {
+    color: var(-white);
+    position: relative;
+    left: 20px;
+    width: fit-content;
+    font-size: 13px;
+}
+
+.db-right {
+    width: 85%;
+    max-height: 100vh;
+    overflow-y: auto;
+    background-color: #f5f4f8;
+}
+
+.dashboard {
+    display: flex;
+    /* align-items: center; */
+    color: var(--white);
+    width: 100%;
+    justify-content: space-between;
+}
+
+.navHeader {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background-color: var(--white);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.left-nh {
+    display: flex;
+    align-items: center;
+    color: var(--grey-text-color);
+}
+
+.left-nh p {
+    margin: 0px 10px;
+    font: 15px !important;
+}
+
+.left-nh p a {
+    color: var(--grey-text-color);
+    text-decoration: none;
+}
+
+.left-nh p a:hover {
+    color: var(--primary)
+}
+
+.right-vh {
+    display: flex;
+    align-items: center;
+}
+
+.right-vh p {
+    display: flex;
+    position: relative;
+    align-items: center;
+    color: var(--grey-text-color);
+    top: 8px;
+    right: 8px;
+}
+
+.right-vh img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.pageHeading h1 {
+    color: var(--primary);
+    font-weight: 600;
+    margin: 20px !important;
+    font-size: 20px !important;
+}
+
+.allAnalytics p {
+    color: var(--grey-text-color);
+    font-size: 12px;
+    position: relative;
+    top: 8px;
+    margin-top: -15px;
+}
+
+.upper-img-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.upper-img-heading img {
+    width: 30px;
+}
+
+.analytics-card {
+    /* width: 20%; */
+    padding: 10px;
+    margin: 10px;
+    background-color: var(--white);
+    border-radius: 10px;
+}
+
+.analytics-count p:first-child {
+    font-size: 25px;
+    font-weight: 600;
+    padding-top: 10px;
+    color: var(--grey-text-color);
+}
+
+.allAnalytics {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    margin: 0px 15px;
+}

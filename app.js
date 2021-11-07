@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 //Template Engines 
 app.engine("hbs", ex_hbs({ extname: '.hbs' }))
 app.set('view engine', 'hbs');
-app.set('view engine', 'ejs');
+app.set('view engine', 'ejs'); 
 
 // DataBase Configuration and Connecting =>
 const pool = mySql.createPool({
@@ -46,8 +46,10 @@ pool.getConnection((err, connection) => {
 // Routers prefix setup =>
 const homeRouter = require('./server/routers/home.router')
 const authRouter = require('./server/routers/auth.router')
+const adminRoutes = require('./server/routers/admin.router.js')
 app.use('/', homeRouter);
 app.use('/v1/auth', authRouter);
+app.use('/dashboard', adminRoutes);
 
 // Running Server => 
 app.listen(port, () => {
