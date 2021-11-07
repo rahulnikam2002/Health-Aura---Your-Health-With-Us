@@ -1,16 +1,83 @@
+// const { hashSync, genSaltSync, compareSync } = require('bcrypt');
+// const { sign } = require('jsonwebtoken');
+// require('dotenv').config();
+
+const { hashSync, genSaltSync, compareSync } = require('bcrypt');
+const mySql = require('mysql');
+const { sign } = require('jsonwebtoken')
 
 
-exports.loginPage = (req,res) => {
-    res.render('login.hbs', {title: 'HealthAura - Login'})
+// DataBase Configuration and Connecting =>
+const pool = mySql.createPool({
+    connectionLimit: 100,
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME
+});
+
+const validator = require('validator')
+
+exports.loginPage = (req, res) => {
+    res.render('login.hbs', { title: 'HealthAura - Login' })
 }
 
-exports.registerPage = (req,res) => {
-    res.render('register.hbs', {title: 'HealthAura - Join the family'})
+exports.registerPage = (req, res) => {
+    res.render('register.hbs', { title: 'HealthAura - Join the family' })
 }
 
 
 // Registration
-exports.registerUser = (req,res) => {
+exports.registerUser = (req, res) => {
     const { userName, userEmail, userPassword } = req.body;
-    res.send({ userName: userName, userEmail:userEmail, userPassword: userPassword })
+    const checkEmail = validator.isEmail(userEmail);
+    const checkPassword = validator.isStrongPassword(userPassword);
+
+    pool.getConnection((err, connection) => {
+        if (err) {
+            console.log(err);
+            throw err;
+        }
+        else {
+            connection.query('SELECT userEmail FROM healthaura_users WHERE userEmail = ?', [userEmail], (err, data) => {
+                if (data.length != 0) {
+                    res.render('register.hbs', { message: 'Email already exists, Try to login' })
+                }
+                else {
+                    if (checkEmail) {
+                        if (checkPassword) {
+                            let salt = genSaltSync(10);
+                            let hashedPassword = hashSync(userPassword, salt)
+
+                            connection.query('INSERT INTO healthaura_users SET userName = ?, userEmail = ?, userPassword =?', [userName, userEmail, hashedPassword], (err, registeredUser) => {
+                                if (err) {
+                                    res.render('register.hbs', { messgae: 'Something went wrong, Please try again, Sorry for inconvenience' });
+                                }
+                                else {
+                                    const userToken = sign({ result: userEmail }, process.env.SECRET_KEY, {
+                                        expiresIn: '600s'
+                                    });
+
+                                    res.cookie('userToken', userToken, {
+                                        expires: new Date(Date.now() + 86400*1000), //31536000000
+                                        httpOnly: true
+                                    })
+                                    res.redirect('/');
+                                }
+                            })
+                        }
+                        else {
+                            res.render('register.hbs', { message: 'Password must contain at least 1 Capital Character, 1 small Character, 1 Number and 1 Symbol' })
+                        }
+                    }
+                    else {
+                        res.render('register.hbs', { message: 'Invalid Email' })
+                    }
+                }
+            })
+        }
+    })
+
+
+
 }

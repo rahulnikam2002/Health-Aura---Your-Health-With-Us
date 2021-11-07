@@ -6,12 +6,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js"
   },
-
   "dependencies": {
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
@@ -21,7 +19,8 @@
     "express": "^4.17.1",
     "express-handlebars": "^5.3.4",
     "jsonwebtoken": "^8.5.1",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.14"

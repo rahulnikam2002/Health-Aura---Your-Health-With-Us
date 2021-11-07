@@ -58,3 +58,8 @@ const checkPassword = (value) => {
     }
 }
 
+let anyMessage = document.querySelector(".messageFromServer")
+
+setTimeout(() => {
+    anyMessage.style.display = "none"
+}, 3000);

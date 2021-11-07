@@ -287,20 +287,30 @@
                 <ion-icon name="close-outline" class="mobileMenuCloseIcon"></ion-icon>
                 <div class="mobileMenuUPAREA">
                     <div class="userAvatar">
-                        <img src="/img/Rahul Nikam.jpeg" alt="">
+                        <img src="/img/user.png" alt="">
                     </div>
+                {{#if notAuthenticated}}
                     <div class="MenuPage-userName">
-                        <p>Rahul Nikam</p>
-                        <p>Pune</p>
+                        <p>Guest User</p>
+                        <p>Unknown</p>
                     </div>
+                {{/if}}
+                {{#each validUser}}
+                <div class="MenuPage-userName">
+                        <p>{{this.userName}}</p>
+                        <p>{{this.userCity}}</p>
+                    </div>
+                {{/each}}
                 </div>
             </div>
             <div class="LowerMobileMenuArea">
                 <div class="lowerMenuItems">
+                    {{#if notAuthenticated}}
                     <div class="menuSingleListItem">
                         <img src="/img/login.png" alt="">
                         <a href="/v1/auth/login">SignIn</a>
                     </div>
+                    {{/if}}
                     <div class="menuSingleListItem">
                         <img src="/img/home (3).png" alt="">
                         <a href="/">Home</a>
@@ -321,10 +331,12 @@
                         <img src="/img/ambulance.png" alt="">
                         <a href="#">Ambulance</a>
                     </div>
+                    {{#if authenticated}}
                     <div class="menuSingleListItem">
                         <img src="/img/logout.png" alt="">
                         <a href="#">Logout</a>
                     </div>
+                    {{/if}}
                 </div>
             </div>
         </section>
