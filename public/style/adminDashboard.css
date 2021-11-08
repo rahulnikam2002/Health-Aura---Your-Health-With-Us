@@ -67,7 +67,7 @@ i, ion-icon, a, div, p, h1, h2, h3, li, section {
     font-size: 20px;
     position: absolute;
     top: 0px;
-    padding: 10px 0px;
+    padding: 25px 0px 10px 0px;
     left: 0px;
     width: 100%;
     text-align: center;
@@ -237,4 +237,89 @@ i, ion-icon, a, div, p, h1, h2, h3, li, section {
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     margin: 0px 15px;
+}
+
+/* Add new Hospital css */
+
+.uploadHospitalFormSection {
+    display: flex;
+}
+
+.UHS-left {
+    width: 100%;
+    background-color: var(--white);
+    border-radius: 10px;
+    padding: 30px;
+    margin: 0px 20px 30px 20px;
+}
+
+.UHS-right {
+    width: 35%;
+    background-color: var(--white);
+    border-radius: 10px;
+    padding: 30px;
+    height: fit-content;
+    margin: 0px 20px 30px 20px;
+}
+
+.singleField input, .singleField textarea, .col2_fields input {
+    width: 100%;
+    margin: 10px auto;
+    border: none;
+    padding: 10px;
+    border-radius: 7px;
+    outline: none;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+.col2_fields {
+    display: flex;
+}
+
+.col2_fields input {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.leftField {
+    margin-right: 5px !important;
+}
+
+.rightField {
+    margin-left: 5px !important;
+}
+
+.UHS-featuredImg{
+    width: 100%;
+}
+
+.UHS-right input[type=file]{
+    width: 100%;
+    color: var(--grey-text-color)
+}
+
+#featuredImg, #multipleImgs{
+    display: none;
+}
+
+.UHS-featuredImg label{
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    width: 100%;
+    margin: 10px 0px;
+    border-radius: 6px;
+    color: var(--grey-text-color);
+    padding: 8px;
+}
+
+.submit-UH{
+    width: 100%;
+    background-color: var(--primary);
+    color: var(--white);
+    text-align: center;
+    padding: 8px 0px;
+    margin: 10px 0px;
+    border: none;
+    border-radius: 6px;
+    outline: none;
 }
