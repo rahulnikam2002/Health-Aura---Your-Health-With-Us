@@ -13,28 +13,28 @@
         <div class="pageHeading">
             <h1>Add new hospital</h1>
         </div>
-        <form action="/dashboard/add-new-hospital" method="post">
+        <form action="/dashboard/add-new-hospital" method="post" enctype="multipart/form-data">
             <div class="uploadHospitalFormSection">
                 <div class="UHS-left">
                     <div class="hospitalName singleField">
-                        <input type="text" name="" placeholder="Hospital name" required>
+                        <input type="text" name="hospitalName" placeholder="Hospital name" required>
                     </div>
                     <div class="hospital-phone-location col2_fields">
-                        <input class="leftField" type="text" name="" placeholder="Hospital Contact" required>
-                        <input class="rightField" type="text" name="" placeholder="Address" required>
+                        <input class="leftField" type="text" name="hospitalPhone" placeholder="Hospital Contact" required>
+                        <input class="rightField" type="text" name="hospitalAddress" placeholder="Address" required>
                     </div>
                     <div class="hospital-city-type col2_fields">
-                        <input class="leftField" type="text" name="" placeholder="City" required>
-                        <input class="rightField" type="text" name="" placeholder="Type" required>
+                        <input class="leftField" type="text" name="hospitalCity" placeholder="City" required>
+                        <input class="rightField" type="text" name="hospitalType" placeholder="Type" required>
                     </div>
                     <div class="hospital-iFrame singleField">
-                        <input type="text" name="" placeholder="iFrame" required>
+                        <input type="text" name="hospitalIframe" placeholder="iFrame" required>
                     </div>
                     <div class="hospital-treatments singleField">
-                        <textarea style="resize: none;" name="" id="" cols="30" rows="5" placeholder="Treatments, Separate by commas" required></textarea>
+                        <textarea style="resize: none;" name="hospitalTags" id="" cols="30" rows="5" placeholder="Treatments, Separate by commas" required></textarea>
                     </div>
                     <div class="hospital-About singleField">
-                        <textarea style="resize: none;" name="" id="" cols="30" rows="5" placeholder="About Hospital max 50 words" required></textarea>
+                        <textarea style="resize: none;" name="hospitalAbout" id="" cols="30" rows="5" placeholder="About Hospital max 50 words" required></textarea>
                     </div>
                 </div>
 
@@ -44,7 +44,7 @@
                         <label for="featuredImg">Featured Image</label>
                     </div>
                     <div class="UHS-featuredImg">
-                        <input type="file" name="" id="multipleImgs" multiple required>
+                        <input type="file" name="multipleImgs" id="multipleImgs" multiple required>
                         <label for="multipleImgs">Hospital Images</label>
 
                     </div>

@@ -12,6 +12,9 @@ const pool = mySql.createPool({
 
 
 
+
+
+
 exports.adminDashboard = (req, res) => {
     res.render('dashboard.hbs', { title: 'Dashboard | HealthAura' });
 }
@@ -22,14 +25,15 @@ exports.addNewHospitalPage = (req, res) => {
 }
 
 exports.addNewHospital = (req, res) => {
-
+    const { hospitalName, hospitalPhone, hospitalCity, hospitalAddress, hospitalType, hospitalIframe, hospitalTags, hospitalAbout } = req.body;
     pool.getConnection((err, connection) => {
         if (err) {
             console.log(err);
             throw err;
         }
         else {
-            console.log('Database connected successfully');
+            
+            console.log('Done')      
         }
     })
 }
