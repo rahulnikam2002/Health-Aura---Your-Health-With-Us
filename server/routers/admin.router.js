@@ -23,7 +23,10 @@ var upload = multer({ storage: storage })
 
 router.get('/', isAdmin, adminController.adminDashboard);
 router.get('/add-new-hospital', isAdmin, adminController.addNewHospitalPage);
-router.post('/add-new-hospital', isAdmin, upload.array('multipleImgs'), adminController.addNewHospital);
+
+const cpUpload = upload.fields([{ name: 'multipleImgs', maxCount: 5 }, { name: 'featuredImg'}])
+
+router.post('/add-new-hospital', isAdmin, cpUpload, adminController.addNewHospital);
 
 
 module.exports = router;

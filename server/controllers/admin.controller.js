@@ -32,8 +32,17 @@ exports.addNewHospital = (req, res) => {
             throw err;
         }
         else {
-            
-            console.log('Done')      
+            let userAddedImgs = req.files;
+            let hospitalFeaturedImg = userAddedImgs.featuredImg[0].filename;
+
+            console.log(userAddedImgs.multipleImgs.length)
+            let imgString = "";
+            for(let i = 0; i<userAddedImgs.multipleImgs.length; i++){
+                imgString = `imgString+${userAddedImgs.multipleImgs[i].filename},`
+            }
+            console.log(imgString);
+
+            res.render('add-hospital.hbs', { title: "Add New Hospital | HealthAura" })
         }
     })
 }
