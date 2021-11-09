@@ -67,7 +67,7 @@ function showPosition(position) {
 
         for (i = 0; i < cityArray.length; i++) {
             if (cityArray[i] != 'undefined') {
-                loglat.value = cityArray[i];
+                location.href = `/search?city=${cityArray[i]}`
             }
         }
 

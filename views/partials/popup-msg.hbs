@@ -1,0 +1,33 @@
+<style>
+    .messageFromServer {
+        max-width: 75%;
+        margin: 0px 0px 0px auto;
+        backdrop-filter: blur(15px) saturate(100%);
+        background-color: #3a62ff;
+        text-align: center;
+        font-size: 14px;
+        padding: 10px;
+        border-radius: 10px;
+        position: absolute;
+        top: 4px;
+        right: 20px;
+        color: var(--dark-color);
+    }
+</style>
+
+
+{{#if message}}
+<div class="messageFromServer">
+    <p>{{message}}</p>
+
+</div>
+{{/if}}
+
+
+<script>
+    let anyMessage = document.querySelector(".messageFromServer")
+
+    setTimeout(() => {
+        anyMessage.style.display = "none"
+    }, 8000);
+</script>

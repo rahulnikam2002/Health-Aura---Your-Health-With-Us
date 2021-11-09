@@ -25,7 +25,8 @@ exports.addNewHospitalPage = (req, res) => {
 }
 
 exports.addNewHospital = (req, res) => {
-    const { hospitalName, hospitalPhone, hospitalCity, hospitalAddress, hospitalType, hospitalIframe, hospitalTags, hospitalAbout } = req.body;
+    const { hospitalName, hospitalPhone, hospitalCity, hospitalAddress, hospitalType, hospitalIframe, hospitalTreatments, hospitalAbout } = req.body;
+    console.log({ hospitalName, hospitalPhone, hospitalCity, hospitalAddress, hospitalType, hospitalIframe, hospitalTreatments, hospitalAbout })
     pool.getConnection((err, connection) => {
         if (err) {
             console.log(err);
@@ -34,15 +35,28 @@ exports.addNewHospital = (req, res) => {
         else {
             let userAddedImgs = req.files;
             let hospitalFeaturedImg = userAddedImgs.featuredImg[0].filename;
-
-            console.log(userAddedImgs.multipleImgs.length)
             let imgString = "";
-            for(let i = 0; i<userAddedImgs.multipleImgs.length; i++){
-                imgString = `imgString+${userAddedImgs.multipleImgs[i].filename},`
+            for (let i = 0; i < userAddedImgs.multipleImgs.length; i++) {
+                imgString = `${imgString}` + `${userAddedImgs.multipleImgs[i].filename},`
             }
-            console.log(imgString);
+            let multipleHospital = imgString;
 
-            res.render('add-hospital.hbs', { title: "Add New Hospital | HealthAura" })
+            connection.query('insert into healthaura_hospitals set hospitalName = ?, phoneNumber = ?, hospitalLocation = ?, city = ?, hospitalType = ?, hospitalIframe = ?, treatments = ?, hospitalAbout = ?, hospitalImgs = ?, featuredImg = ?', [hospitalName, hospitalPhone, hospitalAddress, hospitalCity, hospitalType, hospitalIframe, hospitalTreatments, hospitalAbout, multipleHospital, hospitalFeaturedImg], (err, hospital) => {
+                if (err) {
+                    res.render('add-hospital.hbs', { message: "Error occurred while adding the hospital try again" })
+                    console.log(err);
+                }
+                else {
+                    res.render('add-hospital.hbs', { message: "Hospital Added successfully" })
+                }
+            })
         }
     })
+}
+
+
+
+// Show all Hospitals Page
+exports.allHospitalPage = (req,res) => {
+    res.render('dashboard-all-hospital-page.hbs')
 }
