@@ -47,9 +47,14 @@ pool.getConnection((err, connection) => {
 const homeRouter = require('./server/routers/home.router')
 const authRouter = require('./server/routers/auth.router')
 const adminRoutes = require('./server/routers/admin.router.js')
+const hospitalRoutes = require('./server/routers/hospital.router.js')
 app.use('/', homeRouter);
 app.use('/v1/auth', authRouter);
 app.use('/dashboard', adminRoutes);
+app.use('/hospital', hospitalRoutes);
+app.get('*', (req, res) => {
+    res.render('404.hbs')
+})
 
 // Running Server => 
 app.listen(port, () => {

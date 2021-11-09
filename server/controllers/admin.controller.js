@@ -25,8 +25,7 @@ exports.addNewHospitalPage = (req, res) => {
 }
 
 exports.addNewHospital = (req, res) => {
-    const { hospitalName, hospitalPhone, hospitalCity, hospitalAddress, hospitalType, hospitalIframe, hospitalTreatments, hospitalAbout } = req.body;
-    console.log({ hospitalName, hospitalPhone, hospitalCity, hospitalAddress, hospitalType, hospitalIframe, hospitalTreatments, hospitalAbout })
+    const { hospitalName, hospitalPhone, hospitalCity, hospitalAddress, hospitalType, hospitalIframe, hospitalTreatments, hospitalAbout, hospitalMeta } = req.body;
     pool.getConnection((err, connection) => {
         if (err) {
             console.log(err);
@@ -41,7 +40,7 @@ exports.addNewHospital = (req, res) => {
             }
             let multipleHospital = imgString;
 
-            connection.query('insert into healthaura_hospitals set hospitalName = ?, phoneNumber = ?, hospitalLocation = ?, city = ?, hospitalType = ?, hospitalIframe = ?, treatments = ?, hospitalAbout = ?, hospitalImgs = ?, featuredImg = ?', [hospitalName, hospitalPhone, hospitalAddress, hospitalCity, hospitalType, hospitalIframe, hospitalTreatments, hospitalAbout, multipleHospital, hospitalFeaturedImg], (err, hospital) => {
+            connection.query('insert into healthaura_hospitals set hospitalName = ?, phoneNumber = ?, hospitalLocation = ?, city = ?, hospitalType = ?, hospitalIframe = ?, treatments = ?, hospitalAbout = ?, hospitalImgs = ?, featuredImg = ?, hospitalMeta', [hospitalName, hospitalPhone, hospitalAddress, hospitalCity, hospitalType, hospitalIframe, hospitalTreatments, hospitalAbout, multipleHospital, hospitalFeaturedImg, hospitalMeta], (err, hospital) => {
                 if (err) {
                     res.render('add-hospital.hbs', { message: "Error occurred while adding the hospital try again" })
                     console.log(err);

@@ -528,6 +528,10 @@ ul>li {
     cursor: pointer;
 }
 
+.hospitalTreatments{
+    margin-bottom: 110px !important;
+}
+
 .hospitalCardLower button a {
     color: var(--white);
 }
@@ -659,7 +663,7 @@ ul>li {
     font-size: 12px;
     font-weight: 400;
     color: var(--dark-color);
-    margin: 5px 0px;
+    margin: 5px 5px;
 }
 
 .allTreatments{
@@ -762,6 +766,10 @@ ul>li {
     color: var(--primary);
 }
 
+
+.allTreatments p:first-child{
+    display: none;
+}
 
 /* SDP */
 .SDP-DocImg img{
@@ -878,4 +886,15 @@ ul>li {
 
 .SDP-doc-add{
     margin: 20px auto 90px auto;
+}
+
+
+.hospitalIframe{
+    height: 30vh;
+    width: 100%;
+}
+
+.hospitalIframe iframe{
+    height: 100%;
+    width: 100%;
 }
