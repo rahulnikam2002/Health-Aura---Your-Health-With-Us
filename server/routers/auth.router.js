@@ -6,7 +6,7 @@ const { checkLogin } = require('../../auth/check.login')
 router.get('/login',checkLogin, authController.loginPage);
 router.post('/login', authController.loginUser);
 
-router.get('/register', authController.registerPage);
+router.get('/register', checkLogin, authController.registerPage);
 router.post('/register', authController.registerUser);
 
 router.get('/logout', authController.logoutUser)

@@ -190,6 +190,23 @@ i, ion-icon, a, div, p, h1, h2, h3, li, section {
     border-radius: 50%;
 }
 
+.pageHeading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pageHeading button{
+    background-color: var(--primary);
+    color: var(--white);
+    font-size: 15px;
+    border: none;
+    border-radius: 6px;
+    outline: none;
+    margin-right: 20px;
+    padding: 10px;
+}
+
 .pageHeading h1 {
     color: var(--primary);
     font-weight: 600;
@@ -322,4 +339,55 @@ i, ion-icon, a, div, p, h1, h2, h3, li, section {
     border: none;
     border-radius: 6px;
     outline: none;
+}
+
+
+/* View all Hospitals Page */
+
+.allHospitalDataList{
+    width: 95%;
+    background-color: var(--white);
+    margin: 10px auto;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    max-height: 70vh;
+    height: 100%;
+    overflow-y: auto;
+}
+
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th{
+    font-weight: 600;
+}
+
+
+td, th {
+    border: 1px solid var(--light-text-color) !important;
+    padding: 8px;
+    color: var(--dark-color);
+    width: 33.33% !important;
+}
+
+.actionBtns-AHL a{
+    color: var(--white);
+    background-color: var(--primary);
+    border: none;
+    padding: 5px 22px;
+    outline: none;
+    text-decoration: none;
+    font-size: 12px;
+    margin: 0px 5px;
+    border-radius: 4px;
+    width: 20%;
+    
+}
+
+.actionBtns-AHL a:hover{
+    color: var(--white);
 }
