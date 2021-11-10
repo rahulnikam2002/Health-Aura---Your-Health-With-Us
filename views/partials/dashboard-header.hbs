@@ -1,13 +1,15 @@
 <div class="navHeader">
-            <div class="left-nh">
-                <p><a href="/" target="_blank">View Website</a></p>
-                <p><a href="/dashboard/add-new-hospital">Add Hospital</a></p>
-                <p><a href="">Add Doctor</a></p>
-                <p><a href="">Add Medical</a></p>
-                <p><a href="">Add Ambulance</a></p>
-            </div>
-            <div class="right-vh">
-                <p>Rahul Rajesh Nikam</p>
-                <img src="/img/user.png" alt="admin-image">
-            </div>
-        </div>
+    <div class="left-nh">
+        <p><a href="/" target="_blank">View Website</a></p>
+        <p><a href="/dashboard/add-new-hospital">Add Hospital</a></p>
+        <p><a href="">Add Doctor</a></p>
+        <p><a href="">Add Medical</a></p>
+        <p><a href="">Add Ambulance</a></p>
+    </div>
+    {{#each adminData}}
+    <div class="right-vh">
+        <p>{{this.userName}}</p>
+        <img src="/uploads/{{this.userImg}}.jpg" alt="admin-image">
+    </div>
+    {{/each}}
+</div>

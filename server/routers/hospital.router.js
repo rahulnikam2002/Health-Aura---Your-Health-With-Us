@@ -9,6 +9,8 @@ router.get('/', hospitalController.allHospitalListing);
 router.get('/:title', hospitalController.singleHospitalPage);
 
 
+
+
 module.exports = router;
 
 

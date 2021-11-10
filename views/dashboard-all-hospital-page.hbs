@@ -25,15 +25,19 @@
                     <th>Actions</th>
                 </tr>
 
+            {{#each allHospitalsData}}
                 <tr>
-                    <td>Nikam Hospital</td>
-                    <td>Khed</td>
+                    <td>{{this.hospitalName}}</td>
+                    <td>{{this.City}}</td>
                     <td class="actionBtns-AHL">  {{!-- AHL => All Hospital Listing --}}
-                        <a href="#">View</a>
+                        <a href="/hospital/{{this.hospitalName}}">View</a>
                         <a href="#">Edit</a>
                         <a href="#">Delete</a>
                     </td>
                 </tr>
+            {{/each}}
+
+
             </table>
         </div>
 

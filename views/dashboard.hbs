@@ -138,10 +138,12 @@
                 <p><a href="">Add Medical</a></p>
                 <p><a href="">Add Ambulance</a></p>
             </div>
+            {{#each admin}}
             <div class="right-vh">
-                <p>Rahul Nikam</p>
-                <img src="/img/user.png" alt="admin-image">
+                <p>{{this.userName}}</p>
+                <img src="/uploads/{{this.userImg}}.jpg" alt="admin-image">
             </div>
+            {{/each}}
         </div>
 
         <div class="pageHeading">

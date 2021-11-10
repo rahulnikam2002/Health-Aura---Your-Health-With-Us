@@ -16,12 +16,42 @@ const pool = mySql.createPool({
 
 
 exports.adminDashboard = (req, res) => {
-    res.render('dashboard.hbs', { title: 'Dashboard | HealthAura' });
+    pool.getConnection((err, connection) => {
+        if(err){
+            console.log(err)
+        }
+        else{
+            connection.query(`SELECT * FROM healthaura_users WHERE role = "admin"`, (err, admin) => {
+                if (err) {
+                    res.redirect('/')
+                    console.log(err)
+                }
+                else {
+                   res.render('dashboard.hbs', { admin, title: "Dashborad | HealthAura" })
+                }
+            })
+        }
+    })
 }
 
 
 exports.addNewHospitalPage = (req, res) => {
-    res.render('add-hospital.hbs', { title: "Add New Hospital | HealthAura" })
+    pool.getConnection((err, connection) => {
+        if(err){
+            console.log(err)
+        }
+        else{
+            connection.query(`SELECT * FROM healthaura_users WHERE role = "admin"`, (err, adminData) => {
+                if (err) {
+                    res.redirect('/')
+                    console.log(err)
+                }
+                else {
+                    res.render('add-hospital.hbs', {adminData, title: "Add New Hospital | HealthAura" })
+                }
+            })
+        }
+    })
 }
 
 exports.addNewHospital = (req, res) => {
@@ -46,7 +76,8 @@ exports.addNewHospital = (req, res) => {
                     console.log(err);
                 }
                 else {
-                    res.render('add-hospital.hbs', { message: "Hospital Added successfully" })
+                
+                        res.render('add-hospital.hbs')
                 }
             })
         }
@@ -56,6 +87,27 @@ exports.addNewHospital = (req, res) => {
 
 
 // Show all Hospitals Page
-exports.allHospitalPage = (req,res) => {
-    res.render('dashboard-all-hospital-page.hbs')
+exports.allHospitalPage = (req, res) => {
+
+    pool.getConnection((err, connection) => {
+        if (err) {
+            console.log(err)
+        }
+        else {
+            connection.query(`SELECT * FROM healthaura_users WHERE role = "admin"`, (err, admin) => {
+                if (err) {
+                    res.redirect('/')
+                    console.log(err)
+                }
+                else {
+
+                    connection.query('SELECT * FROM healthaura_hospitals', (err, allHospitalsData) => {
+                        let adminData = admin;
+                        res.render('dashboard-all-hospital-page.hbs', { allHospitalsData, adminData, title: 'All Hospitals | HealthAura' })
+
+                    })
+                }
+            })
+        }
+    })
 }
