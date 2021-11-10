@@ -1,0 +1,151 @@
+<link rel="stylesheet" href="/style/menu.css">
+<link rel="stylesheet" href="/style/style.css">
+<link rel="stylesheet" href="/style/animation.css">
+<link rel="stylesheet" href="/style/userProfile.css">
+
+<section class="userProfileSection">
+    <div class="profilePageHeader">
+        <ion-icon name="arrow-back-outline" class="goBack"></ion-icon>
+        <ion-icon name="create-outline"></ion-icon>
+    </div>
+
+    {{#if noProfilePic}}
+    <div class="userProfileImgName">
+
+        <div class="profilePic">
+            <img src="/img/user.png" alt="">
+        </div>
+        {{#each User}}
+        <div class="userName-pp">
+            <p>{{this.userName}}</p>
+            <p>HealthAura - {{this.role}}</p>
+        </div>
+        {{/each}}
+    </div>
+    {{/if}}
+
+    {{#if profilePic}}
+    <div class="userProfileImgName">
+        {{#each User}}
+
+        <div class="profilePic">
+            <img src="/uploads/{{this.userImg}}.jpg" alt="">
+        </div>
+        <div class="userName-pp">
+            <p>{{this.userName}}</p>
+            <p>HealthAura - {{this.role}}</p>
+        </div>
+        {{/each}}
+    </div>
+    {{/if}}
+
+{{#if noCity}}
+    {{#each User}}
+    <div class="userDetails-pp">
+        <div class="userLocation-pp userDetailsCred">
+            <ion-icon name="location-outline"></ion-icon>
+            <p>Add your City</p>
+        </div>
+        <div class="userEmail-pp userDetailsCred">
+            <ion-icon name="mail-outline"></ion-icon>
+            <p>{{this.userEmail}}</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="profileOptio">
+        <div class="userWebDetails">
+            <ion-icon name="bed-outline"></ion-icon>
+            <p>Show Hospitals</p>
+        </div>
+        <div class="userWebDetails">
+            <ion-icon name="bandage-outline"></ion-icon>
+            <p>Call Doctors</p>
+        </div>
+        <div class="userWebDetails">
+            <ion-icon name="bag-add-outline"></ion-icon>
+            <p>Show Medicals</p>
+        </div>
+        <div class="userWebDetails">
+            <ion-icon name="car-outline"></ion-icon>
+            <p>Get Ambulance</p>
+        </div>
+        <div class="userWebDetails">
+            <ion-icon name="settings-outline"></ion-icon>
+            <p>Setting</p>
+        </div>
+
+        <hr>
+        <div class="userWebDetails">
+            <ion-icon name="log-out-outline"></ion-icon>
+            <p>Logout</p>
+        </div>
+    </div>
+
+    {{/each}}
+{{/if}}
+
+{{#if userCity}}
+    {{#each User}}
+    <div class="userDetails-pp">
+        <div class="userLocation-pp userDetailsCred">
+            <ion-icon name="location-outline"></ion-icon>
+            <p>{{this.userCity}}</p>
+        </div>
+        <div class="userEmail-pp userDetailsCred">
+            <ion-icon name="mail-outline"></ion-icon>
+            <p>{{this.userEmail}}</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="profileOptio">
+        <div class="userWebDetails">
+            <ion-icon name="bed-outline"></ion-icon>
+            <p>Show Hospitals in {{this.userCity}}</p>
+        </div>
+        <div class="userWebDetails">
+            <ion-icon name="bandage-outline"></ion-icon>
+            <p>Call Doctors</p>
+        </div>
+        <div class="userWebDetails">
+            <ion-icon name="bag-add-outline"></ion-icon>
+            <p>Show Medicals in {{this.userCity}}</p>
+        </div>
+        <div class="userWebDetails">
+            <ion-icon name="car-outline"></ion-icon>
+            <p>Get Ambulance</p>
+        </div>
+        <div class="userWebDetails">
+            <ion-icon name="settings-outline"></ion-icon>
+            <p>Setting</p>
+        </div>
+
+        <hr>
+        <div class="userWebDetails">
+            <ion-icon name="log-out-outline"></ion-icon>
+            <p>Logout</p>
+        </div>
+    </div>
+
+    {{/each}}
+{{/if}}
+</section>
+
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
+<script>
+
+
+    const goBack = document.querySelector('.goBack');
+
+    goBack.addEventListener('click', () => {
+        history.go(-1);
+    })
+
+</script>

@@ -196,7 +196,7 @@ i, ion-icon, a, div, p, h1, h2, h3, li, section {
     justify-content: space-between;
 }
 
-.pageHeading button{
+.pageHeading button {
     background-color: var(--primary);
     color: var(--white);
     font-size: 15px;
@@ -307,20 +307,20 @@ i, ion-icon, a, div, p, h1, h2, h3, li, section {
     margin-left: 5px !important;
 }
 
-.UHS-featuredImg{
+.UHS-featuredImg {
     width: 100%;
 }
 
-.UHS-right input[type=file]{
+.UHS-right input[type=file] {
     width: 100%;
     color: var(--grey-text-color)
 }
 
-#featuredImg, #multipleImgs{
+#featuredImg, #multipleImgs {
     display: none;
 }
 
-.UHS-featuredImg label{
+.UHS-featuredImg label {
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
     width: 100%;
     margin: 10px 0px;
@@ -329,7 +329,7 @@ i, ion-icon, a, div, p, h1, h2, h3, li, section {
     padding: 8px;
 }
 
-.submit-UH{
+.submit-UH {
     width: 100%;
     background-color: var(--primary);
     color: var(--white);
@@ -341,10 +341,9 @@ i, ion-icon, a, div, p, h1, h2, h3, li, section {
     outline: none;
 }
 
-
 /* View all Hospitals Page */
 
-.allHospitalDataList{
+.allHospitalDataList {
     width: 95%;
     background-color: var(--white);
     margin: 10px auto;
@@ -356,16 +355,14 @@ i, ion-icon, a, div, p, h1, h2, h3, li, section {
     overflow-y: auto;
 }
 
-
 table {
-  border-collapse: collapse;
-  width: 100%;
+    border-collapse: collapse;
+    width: 100%;
 }
 
-th{
+th {
     font-weight: 600;
 }
-
 
 td, th {
     border: 1px solid var(--light-text-color) !important;
@@ -374,7 +371,7 @@ td, th {
     width: 33.33% !important;
 }
 
-.actionBtns-AHL a{
+.actionBtns-AHL a {
     color: var(--white);
     background-color: var(--primary);
     border: none;
@@ -385,9 +382,22 @@ td, th {
     margin: 0px 5px;
     border-radius: 4px;
     width: 20%;
-    
 }
 
-.actionBtns-AHL a:hover{
+.actionBtns-AHL a:hover {
     color: var(--white);
+}
+
+.totalPostsAnyData {
+    width: 50%;
+    background-color: var(--white);
+    border-radius: 10px;
+    margin: 20px;
+    padding: 20px;
+}
+
+
+.graphs{
+    display: flex;
+    justify-content: space-between;
 }

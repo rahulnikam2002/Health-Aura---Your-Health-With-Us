@@ -48,10 +48,12 @@ const homeRouter = require('./server/routers/home.router')
 const authRouter = require('./server/routers/auth.router')
 const adminRoutes = require('./server/routers/admin.router.js')
 const hospitalRoutes = require('./server/routers/hospital.router.js')
+const usersRoutes = require('./server/routers/user.router')
 app.use('/', homeRouter);
 app.use('/v1/auth', authRouter);
 app.use('/dashboard', adminRoutes);
 app.use('/hospital', hospitalRoutes);
+app.use('/user', usersRoutes);
 app.get('*', (req, res) => {
     res.render('404.hbs')
 })

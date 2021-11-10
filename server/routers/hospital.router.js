@@ -8,10 +8,4 @@ const { isAdmin } = require('../../auth/check.isadmin')
 router.get('/', hospitalController.allHospitalListing);
 router.get('/:title', hospitalController.singleHospitalPage);
 
-
-
-
 module.exports = router;
-
-
-

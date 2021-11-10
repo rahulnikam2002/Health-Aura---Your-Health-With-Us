@@ -1,4 +1,6 @@
 const mySql = require('mysql');
+const { verify } = require('jsonwebtoken');
+require('dotenv').config()
 
 
 // DataBase Configuration and Connecting =>
@@ -17,19 +19,41 @@ const pool = mySql.createPool({
 
 exports.adminDashboard = (req, res) => {
     pool.getConnection((err, connection) => {
-        if(err){
+        if (err) {
             console.log(err)
         }
-        else{
-            connection.query(`SELECT * FROM healthaura_users WHERE role = "admin"`, (err, admin) => {
-                if (err) {
-                    res.redirect('/')
-                    console.log(err)
-                }
-                else {
-                   res.render('dashboard.hbs', { admin, title: "Dashborad | HealthAura" })
-                }
-            })
+        else {
+            const userToken = req.cookies.userToken;
+            if (userToken) {
+                verify(userToken, process.env.SECRET_KEY, (err, decoded) => {
+                    if (err) {
+                        res.redirect('/auth/login/')
+                    }
+                    else {
+                        let userEmail = decoded.result;
+                        connection.query(`SELECT * FROM healthaura_users WHERE userEmail = ?`, [userEmail], (err, admin) => {
+                            if (err) {
+                                res.redirect('/')
+                                console.log(err)
+                            }
+                            else {
+                                console.log(admin[0].userImg)
+                                let userProfileImg = admin[0].userImg;
+                                if (userProfileImg.length == 0) {
+                                    res.render('dashboard.hbs', { admin, title: "Dashborad | HealthAura", noProfileImg: true })
+                                }
+                                else {
+                                    res.render('dashboard.hbs', { admin, title: "Dashborad | HealthAura", ProfileImg: true })
+                                }
+                            }
+                        })
+                    }
+                })
+            }
+            else {
+                res.redirect('/v1/auth/login/')
+            }
+
         }
     })
 }
@@ -37,17 +61,40 @@ exports.adminDashboard = (req, res) => {
 
 exports.addNewHospitalPage = (req, res) => {
     pool.getConnection((err, connection) => {
-        if(err){
+        if (err) {
             console.log(err)
         }
-        else{
+        else {
             connection.query(`SELECT * FROM healthaura_users WHERE role = "admin"`, (err, adminData) => {
-                if (err) {
-                    res.redirect('/')
-                    console.log(err)
+                const userToken = req.cookies.userToken;
+                if (userToken) {
+                    verify(userToken, process.env.SECRET_KEY, (err, decoded) => {
+                        if (err) {
+                            res.redirect('/auth/login/')
+                        }
+                        else {
+                            let userEmail = decoded.result;
+                            connection.query(`SELECT * FROM healthaura_users WHERE userEmail = ?`, [userEmail], (err, admin) => {
+                                if (err) {
+                                    res.redirect('/')
+                                    console.log(err)
+                                }
+                                else {
+                                    console.log(admin[0].userImg)
+                                    let userProfileImg = admin[0].userImg;
+                                    if (userProfileImg.length == 0) {
+                                        res.render('add-hospital.hbs', { admin, title: "Add New Hospital | HealthAura", noProfileImg: true })
+                                    }
+                                    else {
+                                        res.render('add-hospital.hbs', { admin, title: "Add New Hospital | HealthAura", ProfileImg: true })
+                                    }
+                                }
+                            })
+                        }
+                    })
                 }
                 else {
-                    res.render('add-hospital.hbs', {adminData, title: "Add New Hospital | HealthAura" })
+                    res.redirect('/v1/auth/login/')
                 }
             })
         }
@@ -76,8 +123,8 @@ exports.addNewHospital = (req, res) => {
                     console.log(err);
                 }
                 else {
-                
-                        res.render('add-hospital.hbs')
+
+                    res.render('add-hospital.hbs')
                 }
             })
         }
@@ -94,20 +141,38 @@ exports.allHospitalPage = (req, res) => {
             console.log(err)
         }
         else {
-            connection.query(`SELECT * FROM healthaura_users WHERE role = "admin"`, (err, admin) => {
-                if (err) {
-                    res.redirect('/')
-                    console.log(err)
-                }
-                else {
-
-                    connection.query('SELECT * FROM healthaura_hospitals', (err, allHospitalsData) => {
-                        let adminData = admin;
-                        res.render('dashboard-all-hospital-page.hbs', { allHospitalsData, adminData, title: 'All Hospitals | HealthAura' })
-
-                    })
-                }
-            })
+            const userToken = req.cookies.userToken;
+            if (userToken) {
+                verify(userToken, process.env.SECRET_KEY, (err, decoded) => {
+                    if (err) {
+                        res.redirect('/auth/login/')
+                    }
+                    else {
+                        let userEmail = decoded.result;
+                        connection.query(`SELECT * FROM healthaura_users WHERE userEmail = ?`, [userEmail], (err, admin) => {
+                            if (err) {
+                                res.redirect('/')
+                                console.log(err)
+                            }
+                            else {
+                                connection.query('SELECT * FROM healthaura_hospitals', (err, allHospitalsData) => {
+                                    console.log(admin[0].userImg)
+                                    let userProfileImg = admin[0].userImg;
+                                    if (userProfileImg.length == 0) {
+                                        res.render('dashboard-all-hospital-page.hbs', { allHospitalsData, admin, title: "View all Hospital | HealthAura", noProfileImg: true })
+                                    }
+                                    else {
+                                        res.render('dashboard-all-hospital-page.hbs', { allHospitalsData, admin, title: "View all Hospital | HealthAura", ProfileImg: true })
+                                    }
+                                })
+                            }
+                        })
+                    }
+                })
+            }
+            else {
+                res.redirect('/v1/auth/login/')
+            }
         }
     })
 }

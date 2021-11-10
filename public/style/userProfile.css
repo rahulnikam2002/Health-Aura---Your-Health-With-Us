@@ -1,0 +1,90 @@
+@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;800;900&display=swap);
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #3A62FF;
+    --white: #fff;
+    --light-text-color: #7D7D7D;
+    --dark-color: #000;
+    --grey-color: #F0EEEE;
+    --grey-text-color: #5a5a5a;
+}
+
+
+
+.profilePageHeader{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 30px;
+    font-size: 30px;
+    color: var(--primary);
+
+}
+
+.userProfileImgName{
+    display: flex;
+    align-items: center;
+    margin: 10px 25px;
+}
+
+.profilePic{
+    width: 70px;
+
+}
+
+.profilePic img{
+    width: 100%;
+    border-radius: 50%;
+}
+
+.userName-pp{
+    margin: 0px 20px;
+}
+
+.userName-pp p:first-child{
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.userName-pp p:last-child{
+    font-size: 15px;
+    color: var(--grey-text-color);
+}
+.userDetails-pp{
+    margin: 25px 25px;
+}
+
+.userDetailsCred{
+    display: flex;
+    color: var(--grey-text-color);
+    align-items: center;
+    margin: 15px 0px;
+}
+
+.userDetailsCred ion-icon{
+    color: var(--primary);
+    font-size: 25px;
+    margin-right: 10px;
+}
+
+.userWebDetails{
+    display: flex;
+    align-items: center;
+    margin: 30px 20px;
+    font-size: 18px;
+    padding: 5px 0px;
+}
+
+.userWebDetails ion-icon{
+    margin-right: 10px;
+    font-size: 25px;
+}

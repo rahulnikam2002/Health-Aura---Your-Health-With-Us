@@ -6,10 +6,21 @@
         <p><a href="">Add Medical</a></p>
         <p><a href="">Add Ambulance</a></p>
     </div>
-    {{#each adminData}}
-    <div class="right-vh">
-        <p>{{this.userName}}</p>
-        <img src="/uploads/{{this.userImg}}.jpg" alt="admin-image">
-    </div>
-    {{/each}}
+    {{#if ProfileImg}}
+            {{#each admin}}
+            <div class="right-vh">
+                <p>{{this.userName}}</p>
+                <img src="/uploads/{{this.userImg}}.jpg" alt="{{this.userName}}">
+            </div>
+            {{/each}}
+    {{/if}}
+
+    {{#if noProfileImg}}
+            {{#each admin}}
+            <div class="right-vh">
+                <p>{{this.userName}}</p>
+                <img src="/img/user.png" alt="{{this.userName}}">
+            </div>
+            {{/each}}
+    {{/if}}
 </div>
