@@ -27,7 +27,10 @@ body {
     margin: 30px;
     font-size: 30px;
     color: var(--primary);
+}
 
+.profilePageHeader ion-icon{
+    cursor: pointer;
 }
 
 .userProfileImgName{

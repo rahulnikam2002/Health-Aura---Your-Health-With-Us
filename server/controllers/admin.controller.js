@@ -40,10 +40,10 @@ exports.adminDashboard = (req, res) => {
                                 console.log(admin[0].userImg)
                                 let userProfileImg = admin[0].userImg;
                                 if (userProfileImg.length == 0) {
-                                    res.render('dashboard.hbs', { admin, title: "Dashborad | HealthAura", noProfileImg: true })
+                                    res.render('dashboard.hbs', { admin, title: "Dashboard | HealthAura", noProfileImg: true })
                                 }
                                 else {
-                                    res.render('dashboard.hbs', { admin, title: "Dashborad | HealthAura", ProfileImg: true })
+                                    res.render('dashboard.hbs', { admin, title: "Dashboard | HealthAura", ProfileImg: true })
                                 }
                             }
                         })
@@ -173,6 +173,49 @@ exports.allHospitalPage = (req, res) => {
             else {
                 res.redirect('/v1/auth/login/')
             }
+        }
+    })
+}
+
+exports.allUsersPage = (req, res) => {
+    pool.getConnection((err, connection) => {
+        if (err) {
+            console.log(err)
+        }
+        else {
+            const userToken = req.cookies.userToken;
+            if (userToken) {
+                verify(userToken, process.env.SECRET_KEY, (err, decoded) => {
+                    if (err) {
+                        res.redirect('/auth/login/')
+                    }
+                    else {
+                        connection.query('SELECT * FROM healthaura_users', (err, allUsers) => {
+                            let userEmail = decoded.result;
+                            connection.query(`SELECT * FROM healthaura_users WHERE userEmail = ?`, [userEmail], (err, admin) => {
+                                if (err) {
+                                    res.redirect('/')
+                                    console.log(err)
+                                }
+                                else {
+                                    console.log(admin[0].userImg)
+                                    let userProfileImg = admin[0].userImg;
+                                    if (userProfileImg.length == 0) {
+                                        res.render('dashboard-all-users.hbs', { admin, allUsers, title: "All Users | HealthAura", noProfileImg: true })
+                                    }
+                                    else {
+                                        res.render('dashboard-all-users.hbs', { admin,allUsers, title: "All Users | HealthAura", ProfileImg: true })
+                                    }
+                                }
+                            })
+                        })
+                    }
+                })
+            }
+            else {
+                res.redirect('/v1/auth/login/')
+            }
+
         }
     })
 }

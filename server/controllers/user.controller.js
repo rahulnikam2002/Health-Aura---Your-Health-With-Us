@@ -32,18 +32,19 @@ exports.userProfilePage = (req, res) => {
                     connection.query('SELECT * FROM healthaura_users WHERE userEmail = ?', [userEmail], (err,User) => {
                         userImg = User[0].userImg;
                         userCity = User[0].userCity;
+                        pageTitle = User[0].userName;
                         console.log(userImg)
                         if(userImg.length == 0){
                             if(userCity.length == 0){
-                                res.render('user-profile.hbs', {User, authenticated:true, noProfilePic: true, noCity:true})
+                                res.render('user-profile.hbs', {User, authenticated:true, noProfilePic: true, noCity:true, title: `${pageTitle} | HealthAura`})
                             }
-                            res.render('user-profile.hbs', {User, authenticated:true, noProfilePic: true, userCity:true})
+                            res.render('user-profile.hbs', {User, authenticated:true, noProfilePic: true, userCity:true, title: `${pageTitle} | HealthAura`})
                         }
                         else{
                             if(userCity.length == 0){
-                                res.render('user-profile.hbs', {User, authenticated:true, noProfilePic: true, noCity:true})
+                                res.render('user-profile.hbs', {User, authenticated:true, profilePic: true, noCity:true, title: `${pageTitle} | HealthAura`})
                             }
-                            res.render('user-profile.hbs', {User, authenticated:true, noProfilePic: true, userCity:true})
+                            res.render('user-profile.hbs', {User, authenticated:true, profilePic: true, userCity:true, title: `${pageTitle} | HealthAura`})
                         }
                     })
 

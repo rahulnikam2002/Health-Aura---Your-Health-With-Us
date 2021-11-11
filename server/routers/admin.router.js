@@ -30,6 +30,8 @@ const cpUpload = upload.fields([{ name: 'multipleImgs', maxCount: 5 }, { name: '
 router.post('/add-new-hospital', isAdmin, cpUpload, adminController.addNewHospital);
 
 
+router.get('/all-users', isAdmin, adminController.allUsersPage)
+
 module.exports = router;
 
 
