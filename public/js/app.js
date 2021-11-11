@@ -67,7 +67,7 @@ function showPosition(position) {
 
         for (i = 0; i < cityArray.length; i++) {
             if (cityArray[i] != 'undefined') {
-                location.href = `/search?city=${cityArray[i]}`
+                location.href = `/hospital?city=${cityArray[i]}`
             }
         }
 
