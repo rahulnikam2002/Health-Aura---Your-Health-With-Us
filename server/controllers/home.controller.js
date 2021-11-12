@@ -32,13 +32,31 @@ exports.homePage = (req, res) => {
                         connection.query('SELECT * FROM healthaura_users WHERE userEmail = ?', [userEmail], (err, validUser) => {
                             if (err) {
                                 res.render('home.hbs')
-                                console.log('notAuthenticated 2nd')
 
                             }
                             else {
-                                console.log(validUser)
-                                res.render('home.hbs', { validUser, authenticated: true });
+
+                                userImg = validUser[0].userImg;
+                                userCity = validUser[0].userCity;
+                                console.log(userImg)
+                                if (userImg.length == 0) {
+                                    if (userCity.length == 0) {
+                                        res.render('home.hbs', { validUser, authenticated: true, noProfilePic: true, noCity: true, title: `HealthAura | Complete Health Care System` })
+                                    }
+                                    res.render('home.hbs', { validUser, authenticated: true, noProfilePic: true, userCity: true, title: `HealthAura | Complete Health Care System` })
+                                }
+                                else {
+                                    if (userCity.length == 0) {
+                                        res.render('home.hbs', { validUser, authenticated: true, profilePic: true, noCity: true, title: `HealthAura | Complete Health Care System` })
+                                    }
+                                    res.render('home.hbs', { validUser, authenticated: true, profilePic: true, userCity: true, title: `HealthAura | Complete Health Care System` })
+                                }
                             }
+
+
+
+
+
                         })
                     }
                 })
@@ -48,7 +66,7 @@ exports.homePage = (req, res) => {
     }
     else {
         res.render('home.hbs', { notAuthenticated: true })
-                                console.log('notAuthenticated 3rd')
+        console.log('notAuthenticated 3rd')
 
     }
 

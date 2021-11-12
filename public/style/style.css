@@ -388,7 +388,6 @@ ul>li {
     }
 }
 
-
 .homeIcon-bm img {
     width: 50px;
     display: block;
@@ -528,7 +527,7 @@ ul>li {
     cursor: pointer;
 }
 
-.hospitalTreatments{
+.hospitalTreatments {
     margin-bottom: 110px !important;
 }
 
@@ -578,19 +577,19 @@ ul>li {
     left: 40%;
 }
 
-.SHP-doc-add-info, .SDP-doc-info-img{
+.SHP-doc-add-info, .SDP-doc-info-img {
     max-width: 90%;
     margin: auto;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     padding: 10px;
     border-radius: 10px;
     margin-top: -50px;
-    margin-bottom:  30px;
+    margin-bottom: 30px;
     backdrop-filter: blur(14px) saturate(100%);
-        background-color: rgb(255 255 255 / 26%);
+    background-color: rgb(255 255 255 / 26%);
 }
 
-.doc-ad-infoComponent, .SDP-doc-infoComponent{
+.doc-ad-infoComponent, .SDP-doc-infoComponent {
     display: flex;
     align-items: center;
 }
@@ -635,16 +634,16 @@ ul>li {
     top: 3px;
 }
 
-.SHP-allHospitalImages{
+.SHP-allHospitalImages {
     margin-left: 5%;
 }
 
-.SHP-allHospitalImages img{
+.SHP-allHospitalImages img {
     border-radius: 10px;
     margin: 0px 10px;
 }
 
-.SHP-AboutHospital{
+.SHP-AboutHospital {
     max-width: 90%;
     margin: 30px auto;
     padding: 10px;
@@ -652,41 +651,42 @@ ul>li {
     border-radius: 10px;
 }
 
-.SHP-AboutHospital h2{
+.SHP-AboutHospital h2 {
     font-size: 18px;
     font-weight: 500;
     color: var(--primary);
     margin: 5px 0px;
 }
 
-.SHP-AboutHospital p{
+.SHP-AboutHospital p {
     font-size: 12px;
     font-weight: 400;
     color: var(--dark-color);
     margin: 5px 5px;
 }
 
-.allTreatments{
+.allTreatments {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
 }
 
-.SHP-Treatment p{
+.SHP-Treatment p {
     width: fit-content;
 }
-.SHP-Treatment{
+
+.SHP-Treatment {
     border-radius: 4px;
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
     padding: 5px 7px;
     margin: 5px 3px;
 }
 
-.SHP-calltoHospitalBTN a{
+.SHP-calltoHospitalBTN a {
     color: var(--white);
 }
 
-.SHP-calltoHospitalBTN{
+.SHP-calltoHospitalBTN {
     max-width: 100%;
     backdrop-filter: blur(5px) saturate(100%);
     background-color: rgba(255, 255, 255, 0.111);
@@ -698,12 +698,12 @@ ul>li {
     z-index: 1;
 }
 
-.btnSection{
+.btnSection {
     max-width: 90%;
     margin: auto;
 }
 
-.SHP-calltoHospitalBTN button{
+.SHP-calltoHospitalBTN button {
     background-color: var(--primary);
     width: 100%;
     padding: 10px 0px;
@@ -713,13 +713,11 @@ ul>li {
     font-size: 18px;
     font-family: poppins;
     cursor: pointer;
-
 }
 
-
-
 /* Doctor Listing Page */
-.singleDocCard{
+
+.singleDocCard {
     display: flex;
     align-items: center;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -728,77 +726,77 @@ ul>li {
     margin: 20px 0px;
 }
 
-.leftDocImg{
+.leftDocImg {
     width: 30%;
     height: 100%;
 }
 
-.leftDocImg img{
+.leftDocImg img {
     width: 100%;
     height: 100%;
     border-radius: 20px;
     padding: 10px;
 }
 
-.doctorListi{
+.doctorListi {
     max-width: 90%;
     margin: 10px auto;
 }
 
-.docRating{
+.docRating {
     display: flex;
     align-items: center;
     margin: 5px 0px
 }
 
-.docRating ion-icon{
+.docRating ion-icon {
     color: var(--primary);
     font-size: 20px;
 }
 
-.rightDocInfo{
+.rightDocInfo {
     margin: 0px 10px;
 }
 
-.rightDocInfo h1{
+.rightDocInfo h1 {
     font-size: 20px;
     font-weight: 600;
     color: var(--primary);
 }
-
 
 /* .allTreatments p:first-child{
     display: none;
 } */
 
 /* SDP */
-.SDP-DocImg img{
+
+.SDP-DocImg img {
     width: 100%;
     border-radius: 10px;
 }
 
-.SDP-docName{
+.SDP-docName {
     width: 80%;
 }
 
-.SDP-DocImg{
+.SDP-DocImg {
     width: 20%;
 }
 
-.SDP-docName h1{
+.SDP-docName h1 {
     font-size: 20px;
     font-weight: 600;
 }
 
-.SDP-docName p{
+.SDP-docName p {
     color: var(--primary);
 }
 
-.SDP-doc-infoComponent{
+.SDP-doc-infoComponent {
     padding: 0px 10px;
 }
 
-.doctor-specification{
+.doctor-specification {
     max-width: 90%;
     margin: 20px auto;
     display: flex;
@@ -807,13 +805,13 @@ ul>li {
     text-align: center;
 }
 
-.doctor-specification h2{
+.doctor-specification h2 {
     font-size: 25px;
     font-weight: 600;
     color: var(--primary);
 }
 
-.doctor-specification p{
+.doctor-specification p {
     font-size: 18px;
     font-weight: 400;
     color: var(--grey-text-color);
@@ -823,7 +821,7 @@ ul>li {
     font-size: 17px;
 }
 
-.doc-spec-box{
+.doc-spec-box {
     /* background-color: var(--grey-color); */
     width: 30%;
     padding: 20px 5px;
@@ -832,25 +830,25 @@ ul>li {
     background-color: rgba(240, 240, 240, 0.75);
 }
 
-.doc-biography, .doc-Specialist, .SDP-doc-add{
+.doc-biography, .doc-Specialist, .SDP-doc-add {
     max-width: 90%;
     margin: 20px auto;
 }
 
-.doc-biography h2, .doc-Specialist h2, .SDP-doc-add h2{
+.doc-biography h2, .doc-Specialist h2, .SDP-doc-add h2 {
     font-size: 20px;
     font-weight: 600;
     color: var(--primary);
     margin: 10px 0px;
 }
 
-.docSpeacItem{
+.docSpeacItem {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
 }
 
-.docSpeacItem p{
+.docSpeacItem p {
     width: fit-content;
     padding: 5px 7px;
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
@@ -858,7 +856,7 @@ ul>li {
     margin: 5px 7px;
 }
 
-.callDocBtn{
+.callDocBtn {
     background-color: var(--white);
     padding: 10px 20px;
     position: fixed;
@@ -867,7 +865,7 @@ ul>li {
     border-top: 1px solid var(--light-text-color);
 }
 
-.callDocBtn button{
+.callDocBtn button {
     width: 100%;
     background-color: var(--primary);
     font-size: 18px;
@@ -880,21 +878,20 @@ ul>li {
     cursor: pointer;
 }
 
-.doc-biography p{
+.doc-biography p {
     font-size: 12px;
 }
 
-.SDP-doc-add{
+.SDP-doc-add {
     margin: 20px auto 90px auto;
 }
 
-
-.hospitalIframe{
+.hospitalIframe {
     height: 30vh;
     width: 100%;
 }
 
-.hospitalIframe iframe{
+.hospitalIframe iframe {
     height: 100%;
     width: 100%;
 }

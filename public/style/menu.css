@@ -84,6 +84,17 @@ i, ion-icon, a, div, p, h1, h2, h3, li, section {
 
 .MenuPage-userName {
     margin: 0px 15px;
+    position: relative;
+    color: var(--grey-color);
+}
+
+
+.userProfileBTN {
+    position: absolute;
+    top: 4px;
+    right: -84px;
+    font-size: 30px;
+    color: var(--grey-color);
 }
 
 .menuSingleListItem {
