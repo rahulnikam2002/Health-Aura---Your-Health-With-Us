@@ -767,9 +767,9 @@ ul>li {
 }
 
 
-.allTreatments p:first-child{
+/* .allTreatments p:first-child{
     display: none;
-}
+} */
 
 /* SDP */
 .SDP-DocImg img{
