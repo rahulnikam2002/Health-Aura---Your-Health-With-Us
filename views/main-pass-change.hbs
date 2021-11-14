@@ -1,5 +1,30 @@
-<h1>Main Pass changing page</h1>
 
-{{#if userEmail}}
-    <p>{{userEmail}}</p>
+<link rel="stylesheet" href="/style/changePassword.css">
+<div class="goBack" onclick="goBack()">
+    <ion-icon name="arrow-back-outline"></ion-icon>
+</div>
+
+{{!-- CP => change Password --}}
+<div class="emailSection-CP">
+    <h1>Create new password</h1>
+    {{#if userEmail}}
+    <p>Your new password must be different from the previous password and it must contail at least 1 capital, 1 small, 1 number and 1 symbol</p>
+
+    <div class="emailForm">
+        <form action="/v1/auth/credentials/new-password/{{userEmail}}" method="POST">
+            <input type="password" name="userNewPassword" placeholder="Enter new password" required>
+            <input type="submit" value="Reset Password"></input>
+        </form>
+{{#if message}}
+        <p class="errorMSG">{{message}}</p>
 {{/if}}
+        
+    </div>
+    {{/if}}
+
+</div>
+
+
+<script src="/js/common.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

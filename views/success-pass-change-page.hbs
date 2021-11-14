@@ -1,0 +1,95 @@
+<style>
+    @import url(https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;800;900&display=swap);
+
+    body {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    * {
+        padding: 0px;
+        margin: 0px;
+        box-sizing: border-box;
+    }
+
+    :root {
+        --primary: #3A62FF;
+        --white: #fff;
+        --light-text-color: #7D7D7D;
+        --dark-color: #000;
+        --grey-color: #F0EEEE;
+        --grey-text-color: #5a5a5a;
+    }
+
+    i,
+    ion-icon,
+    a,
+    div,
+    p,
+    h1,
+    h2,
+    h3,
+    li,
+    section {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+        height: 96vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .successfullyChanged {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .successfullyChanged img {
+        width: 50px;
+        margin: 20px 0px;
+    }
+
+    .successfullyChanged h1,
+    p {
+        text-align: center;
+    }
+
+    .successfullyChanged h1{
+        text-align: center;
+        font-weight: 600;
+        font-size: 22px;
+    }
+
+    .successfullyChanged p {
+        text-align: center;
+        font-size: 16px;
+    }
+
+    .successfullyChanged a {
+        text-decoration: none;
+    }
+
+    .successfullyChanged button {
+        padding: 10px 60px;
+        font-size: 16px;
+        border: none;
+        border-radius: 6px;
+        outline: none;
+        margin: 20px 0px;
+        background-color: var(--primary);
+        color: var(--white);
+        font-family: poppins;
+    }
+</style>
+
+
+<div class="successfullyChanged">
+    <img src="/img/check.png" alt="successfully-done">
+    <h1>Password Changed Successfully</h1>
+    <p>You need to login with new password for security propose</p>
+    <a href="/v1/auth/login"><button>Login</button></a>
+</div>

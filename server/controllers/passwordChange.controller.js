@@ -1,6 +1,7 @@
 const mySql = require('mysql')
 const nodeMailer = require('nodemailer')
 const { genSaltSync, compareSync, hashSync } = require('bcrypt')
+const validator = require('validator')
 require('dotenv').config()
 
 
@@ -70,21 +71,21 @@ exports.showOtpPage = (req, res) => {
 
                     // Generating HASH OTP
                     let mewOTP = OTP.toString();
-                            let salt = genSaltSync(10);
-                            let hashedOTP = hashSync(mewOTP, salt)
+                    let salt = genSaltSync(10);
+                    let hashedOTP = hashSync(mewOTP, salt)
 
                     let sendEmail = transporter.sendMail(emailTemplate, (err, success) => {
-                        if(err){
+                        if (err) {
                             console.log(err)
                         }
-                        else{
+                        else {
 
-                            connection.query('UPDATE healthaura_users SET userOTP = ? WHERE userEmail = ?', [hashedOTP, userEmail],(err, successful) => {
-                                if(err){
+                            connection.query('UPDATE healthaura_users SET userOTP = ? WHERE userEmail = ?', [hashedOTP, userEmail], (err, successful) => {
+                                if (err) {
                                     res.render('change-password.hbs', { title: 'Change Password', message: 'Some error occurred please try again' })
-                            
+
                                 }
-                                else{
+                                else {
                                     res.render('otp.hbs', { title: 'Change Password', userEmail: userEmail })
                                 }
                             })
@@ -97,27 +98,53 @@ exports.showOtpPage = (req, res) => {
 }
 
 
-exports.userOTP = (req,res) => {
-    pool.getConnection((err,connection) => {
-        if(err) throw err;
+exports.userOTP = (req, res) => {
+    pool.getConnection((err, connection) => {
+        if (err) throw err;
         let userEmail = req.params.userEmail;
         let userEnteredOTP = req.body.userOTP;
 
         console.log(userEmail + " " + userEnteredOTP);
 
-        connection.query('SELECT userOTP FROM healthaura_users WHERE userEmail = ?', [userEmail], (err,data) => {
+        connection.query('SELECT userOTP FROM healthaura_users WHERE userEmail = ?', [userEmail], (err, data) => {
             // const checkPassword = compareSync(userPassword, data[0].userPassword);
-            if(err){
+            if (err) {
                 res.render('change-password.hbs', { title: 'Change Password', message: 'Some error occurred please try again' })
             }
             const checkOTP = compareSync(userEnteredOTP, data[0].userOTP);
-            if(checkOTP){
-            
-                res.render('main-pass-change.hbs', {userEmail: userEmail, title: 'Change Password'})
+            if (checkOTP) {
+
+                res.render('main-pass-change.hbs', { userEmail: userEmail, title: 'Change Password' })
             }
-            else{
+            else {
                 res.render('otp.hbs', { title: 'Change Password', userEmail: userEmail, message: 'Incorrect OTP' })
             }
         })
+    })
+}
+
+
+exports.userNewPassword = (req, res) => {
+    pool.getConnection((err, connection) => {
+        if (err) throw err;
+        let userEmail = req.params.userEmail;
+        let userPassword = req.body.userNewPassword;
+        let strongPass = validator.isStrongPassword(userPassword);
+        if (strongPass) {
+            let salt = genSaltSync(10);
+            let newHashedPassword = hashSync(userPassword, salt);
+            connection.query('UPDATE healthaura_users SET userPassword = ? WHERE userEmail = ?', [newHashedPassword, userEmail], (err, successful) => {
+                if (err) {
+                    res.render('change-password.hbs', { title: 'Change Password', message: 'Some error occurred please try again' })
+                }
+                else {
+                    res.clearCookie('userToken')
+                    res.render('success-pass-change-page.hbs')
+                }
+            })
+        }
+        else {
+            res.render('main-pass-change.hbs', { userEmail: userEmail, title: 'Change Password', message: 'Enter a strong password' })
+        }
     })
 }
