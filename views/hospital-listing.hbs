@@ -27,11 +27,11 @@
         
 
         <hr class="divider">
-{{#if message}}
-        <section class="noDataFound">
-            <img src="/img/sad.png" alt="">
-            <p class="normalText">{{message}}</p>
-        </section>
+        {{#if message}}
+            <section class="noDataFound">
+                <img src="/img/sad.png" alt="">
+                <p class="normalText">{{message}}</p>
+            </section>
         {{/if}}
 
         <section class="allHospitalsSection">
@@ -63,6 +63,15 @@
             </div>
         </section>
 
+        {{#if numberOfPages}}
+            <p class="numberOfPages hide">{{numberOfPages}}</p>
+        {{/if}}
+
+        <section class="paginationBTNS">
+            <button id="previousPage">Previous</button>
+            <button id="nextPage">Next</button>
+        </section>
+
     </section>
 
 
@@ -83,3 +92,16 @@
 <script src="/js/SLP.js"></script>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
+
+<script>
+    
+    let numberOfPages = document.querySelector('.numberOfPages').innerHTML;
+    let lastPage = Number(numberOfPages)
+    console.log(lastPage)
+
+
+
+
+</script>
