@@ -641,6 +641,7 @@ ul>li {
 .SHP-allHospitalImages img {
     border-radius: 10px;
     margin: 0px 10px;
+    max-height: 186px;
 }
 
 .SHP-AboutHospital {
@@ -894,4 +895,22 @@ ul>li {
 .hospitalIframe iframe {
     height: 100%;
     width: 100%;
+}
+
+.MenuPage-userName{
+    cursor: pointer;
+}
+
+.noDataFound{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.noDataFound p{
+    font-size: 16px;
+    text-align: center;
+    margin: 10px 0px;
 }

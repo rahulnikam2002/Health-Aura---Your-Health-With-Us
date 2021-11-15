@@ -26,7 +26,6 @@ exports.homePage = (req, res) => {
                     if (err) {
                         console.log(err);
                         throw err;
-
                     }
                     else {
                         connection.query('SELECT * FROM healthaura_users WHERE userEmail = ?', [userEmail], (err, validUser) => {
@@ -35,7 +34,6 @@ exports.homePage = (req, res) => {
 
                             }
                             else {
-
                                 userImg = validUser[0].userImg;
                                 userCity = validUser[0].userCity;
                                 console.log(userImg)

@@ -19,12 +19,20 @@
 
     <section class="HospitalsListCompnent">
 
+        
         <section class="resultFetchedData">
             <p class="normalText">Showing Results for - Hospitals</p>
         </section>
 
-        <hr class="divider">
+        
 
+        <hr class="divider">
+{{#if message}}
+        <section class="noDataFound">
+            <img src="/img/sad.png" alt="">
+            <p class="normalText">{{message}}</p>
+        </section>
+        {{/if}}
 
         <section class="allHospitalsSection">
             <div class="allHospitalsList">
@@ -60,83 +68,11 @@
 
     <!-- Search Section -->
     <section class="searchPage-hospital">
-        <div class="cancelBtn-searchPage">
-            <ion-icon name="close-outline"></ion-icon>
-        </div>
-
-        <div class="searchUpperSection">
-            <div class="searchInput">
-                <form action="/search" method="POST">
-                    <ion-icon name="search-outline" class="searchIcon-hospitalSearch"></ion-icon>
-                    <input type="text" name="searchhospital" class="HSP-normalSearch"
-                        placeholder="Search for Hospitals">
-                    <button type="submit">
-                        <ion-icon name="arrow-forward-outline"></ion-icon>
-                    </button>
-                </form>
-            </div>
-
-            <div class="userLocationDetector">
-                <ion-icon name="location-outline"></ion-icon>
-                <div class="icon-text">
-                    <p class="title locationDetector">Detect your location</p>
-                    <p class="smallText">Using GPS</p>
-                </div>
-            </div>
-        </div>
-
-        <hr class="divider">
-
-        <div class="advanceSearchHeading">
-            <p class="heading">Advance Search</p>
-            <div class="advanceSearchInput">
-                <form action="/advance-search" method="POST">
-                    <div class="userCityName advanceSearchInput">
-                        <ion-icon class="advanceSearchIcon" name="location-outline"></ion-icon>
-                        <input type="text" placeholder="Enter City" class="loglat">
-                    </div>
-
-                    <div class="userTreatmentName advanceSearchInput">
-                        <!-- ASHP => Advance Search Hospiptal page -->
-                        <ion-icon class="advanceSearchIcon treatmentIcon-ASHP" name="heart-half-outline"></ion-icon>
-                        <input type="text" placeholder="Enter City">
-                    </div>
-
-                    <div class="submit-advanceSearch">
-                        <button type="submit">Search</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-
-        <hr class="divider dividerSearchPage">
-
-        <div class="boxMedicaDoctor">
-            <div class="boxDoctor box-common-hda">
-                <img src="/public/img/doctor (1).png" alt="">
-                <p>Doctors</p>
-            </div>
-            <div class="boxDoctor box-common-hda">
-                <img src="/public/img/medicals.png" alt="">
-                <p>Medicals</p>
-            </div>
-            <div class="boxDoctor box-common-hda">
-                <img src="/public/img/ambulance.png" alt="">
-                <p>Ambulance</p>
-            </div>
-        </div>
+        {{> hospital-search}}
 
     </section>
 
-    <!-- Transparent background loading effect-->
-    <div class="showLoading">
-        <div class="loadingScreen">
-            <div class="loadingEffect">
-                <img src="/public/img/XOsX.gif" alt="loadingEffect">
-            </div>
-        </div>
-    </div>
+
 
 
     <!-- Menu -->

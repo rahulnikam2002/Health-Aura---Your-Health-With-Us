@@ -12,7 +12,7 @@
 
     <div class="emailForm">
         <form action="/v1/auth/credentials/password/{{userEmail}}" method="POST">
-            <input type="number" name="userOTP" placeholder="Enter OTP" required>
+            <input type="number" name="userOTP" autocomplete="off" placeholder="Enter OTP" required>
             <input type="submit" value="Verify"></input>
         </form>
 {{#if message}}

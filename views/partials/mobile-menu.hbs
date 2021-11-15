@@ -3,10 +3,18 @@
             <div class="upperMobileMenuArea">
                 <ion-icon name="close-outline" class="mobileMenuCloseIcon"></ion-icon>
                 <div class="mobileMenuUPAREA">
+                {{#if profilePic}}
+                    {{#each validUser}}
                     <div class="userAvatar">
+                        <img src="/uploads/{{this.userImg}}" alt="">
+                    </div>
+                    {{/each}}
+                {{/if}}
+                
+                {{#if notAuthenticated}}
+                <div class="userAvatar">
                         <img src="/img/user.png" alt="">
                     </div>
-                {{#if notAuthenticated}}
                     <div class="MenuPage-userName">
                         <p>Guest User</p>
                         <p>Unknown</p>
@@ -57,3 +65,10 @@
                 </div>
             </div>
         </section>
+
+        <script>
+            let userName = document.querySelector('.MenuPage-userName');
+            userName.addEventListener('click', () => {
+                location.href = '/user'
+            })
+        </script>

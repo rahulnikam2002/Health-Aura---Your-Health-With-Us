@@ -1,0 +1,79 @@
+<div class="cancelBtn-searchPage">
+            <ion-icon name="close-outline"></ion-icon>
+        </div>
+
+        <div class="searchUpperSection">
+            <div class="searchInput">
+                <form action="/search/hospital/hospital" method="GET">
+                    <ion-icon name="search-outline" class="searchIcon-hospitalSearch"></ion-icon>
+                    <input type="text" autocomplete="off" name="hospital" class="HSP-normalSearch"
+                        placeholder="Search for Hospitals">
+                    <button type="submit">
+                        <ion-icon name="arrow-forward-outline"></ion-icon>
+                    </button>
+                </form>
+            </div>
+
+            <div class="userLocationDetector">
+                <ion-icon name="location-outline"></ion-icon>
+                <div class="icon-text">
+                    <p class="title locationDetector">Detect your location</p>
+                    <p class="smallText">Using GPS</p>
+                </div>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="advanceSearchHeading">
+            <p class="heading">Advance Search</p>
+            <div class="advanceSearchInput">
+                <form action="/search/advance-search" method="POST">
+                    <div class="userCityName advanceSearchInput">
+                        <ion-icon class="advanceSearchIcon" name="location-outline"></ion-icon>
+                        <input type="text" autocomplete="off" placeholder="Enter City" name="city">
+                    </div>
+
+                    <div class="userTreatmentName advanceSearchInput">
+                        <!-- ASHP => Advance Search Hospiptal page -->
+                        <ion-icon class="advanceSearchIcon treatmentIcon-ASHP" name="heart-half-outline"></ion-icon>
+                        <input type="text" autocomplete="off" name="treatment" placeholder="Enter Treatment">
+                    </div>
+
+                    <div class="submit-advanceSearch">
+                        <button type="submit">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <hr class="divider dividerSearchPage">
+
+        <div class="boxMedicaDoctor">
+            <div class="boxDoctor box-common-hda">
+                <img src="/img/doctor (1).png" alt="">
+                <p>Doctors</p>
+            </div>
+            <div class="boxDoctor box-common-hda">
+                <img src="/img/medicals.png" alt="">
+                <p>Medicals</p>
+            </div>
+            <div class="boxDoctor box-common-hda">
+                <img src="/img/ambulance.png" alt="">
+                <p>Ambulance</p>
+            </div>
+        </div>
+
+
+
+        <!-- Transparent background loading effect-->
+    <div class="showLoading">
+        <div class="loadingScreen">
+            <div class="loadingEffect">
+                <img src="/img/XOsX.gif" alt="loadingEffect">
+            </div>
+        </div>
+    </div>
+
+        <script src="/js/hospitalSearch.js"></script>
