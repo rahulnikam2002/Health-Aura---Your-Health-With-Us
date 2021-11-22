@@ -13,7 +13,7 @@ const pool = mySql.createPool({
 });
 
 exports.allHospitalListing = (req, res) => {
-    const resultPerPage = 10;
+    const resultPerPage = 1;
 
     pool.getConnection((err, connection) => {
         if (err) {

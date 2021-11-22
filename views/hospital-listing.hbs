@@ -295,6 +295,55 @@ if(href.includes('city=')){
         })
     }
 
+if(href.includes('hospital?hospital=')){
+    console.log(true)
+        nextPage.addEventListener('click', () => {
+            let url = location.search;
+            let a = url.length;
+
+            if (!url.includes('&page=')) {
+                location.href = url + "&page=" + 2;
+            }
+            if (url.includes('&page=')) {
+                let pageNo = url.split('&page=')[1]
+                let currentUserPage = Number(pageNo);
+                if (currentUserPage >= lastPage) {
+                    let url = location.search;
+                    let a = url.split('&page=')[0]
+                    location.href = a + "&page=" + lastPage;
+                }
+                else {
+                    let url = location.search;
+                    let mainURL = url.split('&page=')[0]
+                    location.href = mainURL + "&page=" + `${currentUserPage + 1}`;
+                }
+
+            }
+        })
+
+
+        previousPage.addEventListener('click', () => {
+            let url = location.search;
+            let a = url.length;
+
+            if (url.includes('&page=')) {
+                let pageNo = url.split('&page=')[1]
+                let currentUserPage = Number(pageNo);
+                if (currentUserPage <= 1) {
+                    let url = location.search;
+                    let a = url.split('&page=')[0]
+                    location.href = a;
+                }
+                else {
+                    let url = location.search;
+                    let mainURL = url.split('&page=')[0]
+                    location.href = mainURL + "&page=" + `${currentUserPage - 1}`;
+                }
+
+            }
+        })
+    }
+
 
 
 </script>
