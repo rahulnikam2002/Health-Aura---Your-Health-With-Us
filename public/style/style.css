@@ -919,3 +919,22 @@ ul>li {
 .hide{
 display:none;
 }
+
+
+.paginationBTNS{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 20px;
+}
+
+.paginationBTNS button{
+    background-color: var(--primary);
+    border: none;
+    border-radius: 6px;
+    font-family: Poppins;
+    font-size: 15px;
+    padding: 8px 12px;
+    color: var(--white);
+    cursor: pointer;
+}

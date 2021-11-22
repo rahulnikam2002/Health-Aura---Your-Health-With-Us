@@ -12,11 +12,12 @@ const pool = mySql.createPool({
     database: process.env.DB_NAME
 });
 
-
+//By user Location (GPS)
 exports.searchHospitalByCity = (req, res) => {
     const hospitalCity = req.query.city;
     const hospitalName = req.query.hospital;
     const treatment = req.query.treatment;
+    const resultPerPage = 1;
 
     pool.getConnection((err, connection) => {
         if (err) {
@@ -37,8 +38,24 @@ exports.searchHospitalByCity = (req, res) => {
                                     res.render('hospital-listing.hbs', { title: `Hospitals | ${hospitalCity}`, notAuthenticated: true, noProfilePic: true, noCity: true, message: 'No data found for this area, Try to search any nearby area' })
                                 }
                                 else {
+                                    const numOfResults = allHospitalsData.length;
+                                    const numberOfPages = Math.ceil(numOfResults / resultPerPage);
+                                    let page = req.query.page ? Number(req.query.page) : 1;
+                                    const startingLimit = (page - 1) * resultPerPage;
 
-                                    res.render('hospital-listing.hbs', { allHospitalsData, title: `Hospitals | ${hospitalCity}`, notAuthenticated: true, noProfilePic: true, noCity: true, })
+                                    connection.query(`select * from healthaura_hospitals where hospitalLocation like? or City like? LIMIT ${startingLimit},${resultPerPage}`, ['%' + hospitalCity + '%', '%' + hospitalCity + '%'], (err, allHospitalsData) => {
+                                        if (err) {
+                                            res.render('hospital-listing.hbs', { title: `Hospitals | ${hospitalCity}`, notAuthenticated: true, noProfilePic: true, noCity: true, message: 'No data found for this area, Try to search any nearby area' })
+                                        }
+                                        else {
+                                            let iterator = (page - 5) < 1 ? 1 : page - 5;
+                                            let endingLink = (iterator + 9) <= numberOfPages ? (iterator + 9) : page + (numberOfPages - page);
+                                            if (endingLink < (page + 4)) {
+                                                iterator -= (page + 4) - numberOfPages;
+                                            }
+                                            res.render('hospital-listing.hbs', { allHospitalsData, title: `Hospitals | ${hospitalCity}`, notAuthenticated: true, noProfilePic: true, noCity: true, page, iterator, endingLink, numberOfPages, fullData: true })
+                                        }
+                                    })
                                 }
                             }
                         })
@@ -49,15 +66,32 @@ exports.searchHospitalByCity = (req, res) => {
                             if (err) {
                                 connection.query('select * from healthaura_hospitals where hospitalLocation like? or City like?', ['%' + hospitalCity + '%', '%' + hospitalCity + '%'], (err, allHospitalsData) => {
                                     if (err) {
-                                        res.render('hospital-listing.hbs', { title: `Hospitals | ${hospitalCity}`, validUser, notAuthenticated: true, noProfilePic: true, noCity: true, message: 'No data found for this area, Try to search any nearby area' })
+                                        res.render('hospital-listing.hbs', { title: `Hospitals | ${hospitalCity}`, validUser, authenticated: true, noProfilePic: true, noCity: true, message: 'No data found for this area, Try to search any nearby area' })
                                     }
                                     else {
                                         if (allHospitalsData.length == 0) {
-                                            res.render('hospital-listing.hbs', { title: `Hospitals | ${hospitalCity}`, notAuthenticated: true, noProfilePic: true, noCity: true, message: 'No data found for this area, Try to search any nearby area', validUser })
+                                            res.render('hospital-listing.hbs', { title: `Hospitals | ${hospitalCity}`, authenticated: true, noProfilePic: true, noCity: true, message: 'No data found for this area, Try to search any nearby area', validUser })
                                         }
                                         else {
+                                            const numOfResults = allHospitalsData.length;
+                                            const numberOfPages = Math.ceil(numOfResults / resultPerPage);
+                                            let page = req.query.page ? Number(req.query.page) : 1;
+                                            const startingLimit = (page - 1) * resultPerPage;
 
-                                            res.render('hospital-listing.hbs', { allHospitalsData, title: `Hospitals | ${hospitalCity}`, notAuthenticated: true, noProfilePic: true, noCity: true, validUser })
+                                            connection.query(`select * from healthaura_hospitals where hospitalLocation like? or City like? LIMIT ${startingLimit},${resultPerPage}`, ['%' + hospitalCity + '%', '%' + hospitalCity + '%'], (err, allHospitalsData) => {
+                                                if (err) {
+                                                    res.render('hospital-listing.hbs', { title: `Hospitals | ${hospitalCity}`, validUser, authenticated: true, noProfilePic: true, noCity: true, message: 'No data found for this area, Try to search any nearby area' })
+                                                }
+                                                else {
+                                                    let iterator = (page - 5) < 1 ? 1 : page - 5;
+                                                    let endingLink = (iterator + 9) <= numberOfPages ? (iterator + 9) : page + (numberOfPages - page);
+                                                    if (endingLink < (page + 4)) {
+                                                        iterator -= (page + 4) - numberOfPages;
+                                                    }
+                                                    res.render('hospital-listing.hbs', { allHospitalsData, title: `Hospitals | ${hospitalCity}`, notAuthenticated: true, noProfilePic: true, noCity: true, validUser, page, iterator, endingLink, numberOfPages, fullData: true })
+
+                                                }
+                                            })
                                         }
                                     }
                                 })
@@ -66,7 +100,7 @@ exports.searchHospitalByCity = (req, res) => {
                                 userImg = validUser[0].userImg;
                                 userCity = validUser[0].userCity;
                                 if (userImg.length == 0) {
-                                    if (userCity == 0) {
+                                    if (userCity.length == 0) {
                                         connection.query('select * from healthaura_hospitals where hospitalLocation like? or City like?', ['%' + hospitalCity + '%', '%' + hospitalCity + '%'], (err, allHospitalsData) => {
                                             if (err) {
                                                 res.render('hospital-listing.hbs', { title: `Hospitals | ${hospitalCity}`, authenticated: true, noProfilePic: true, noCity: true, validUser, message: 'No data found for this area, Try to search any nearby area' })
@@ -76,8 +110,24 @@ exports.searchHospitalByCity = (req, res) => {
                                                     res.render('hospital-listing.hbs', { title: `Hospitals | ${hospitalCity}`, authenticated: true, noProfilePic: true, noCity: true, message: 'No data found for this area, Try to search any nearby area', validUser })
                                                 }
                                                 else {
+                                                    const numOfResults = allHospitalsData.length;
+                                                    const numberOfPages = Math.ceil(numOfResults / resultPerPage);
+                                                    let page = req.query.page ? Number(req.query.page) : 1;
+                                                    const startingLimit = (page - 1) * resultPerPage;
+                                                    connection.query(`select * from healthaura_hospitals where hospitalLocation like? or City like? LIMIT ${startingLimit},${resultPerPage}`, ['%' + hospitalCity + '%', '%' + hospitalCity + '%'], (err, allHospitalsData) => {
+                                                        if (err) {
+                                                            res.render('hospital-listing.hbs', { title: `Hospitals | ${hospitalCity}`, authenticated: true, noProfilePic: true, noCity: true, validUser, message: 'No data found for this area, Try to search any nearby area' })
+                                                        }
+                                                        else {
+                                                            let iterator = (page - 5) < 1 ? 1 : page - 5;
+                                                            let endingLink = (iterator + 9) <= numberOfPages ? (iterator + 9) : page + (numberOfPages - page);
+                                                            if (endingLink < (page + 4)) {
+                                                                iterator -= (page + 4) - numberOfPages;
+                                                            }
+                                                            res.render('hospital-listing.hbs', { allHospitalsData, title: `Hospitals | ${hospitalCity}`, authenticated: true, validUser, noProfilePic: true, noCity: true, page, iterator, endingLink, numberOfPages, fullData: true })
+                                                        }
+                                                    })
 
-                                                    res.render('hospital-listing.hbs', { allHospitalsData, title: `Hospitals | ${hospitalCity}`, authenticated: true, validUser, noProfilePic: true, noCity: true, })
                                                 }
                                             }
                                         })
@@ -92,8 +142,23 @@ exports.searchHospitalByCity = (req, res) => {
                                                     res.render('hospital-listing.hbs', { title: `Hospitals | ${hospitalCity}`, authenticated: true, noProfilePic: true, userCity: true, message: 'No data found for this area, Try to search any nearby area', validUser })
                                                 }
                                                 else {
-
-                                                    res.render('hospital-listing.hbs', { allHospitalsData, title: `Hospitals | ${hospitalCity}`, authenticated: true, validUser, noProfilePic: true, userCity: true, })
+                                                    const numOfResults = allHospitalsData.length;
+                                                    const numberOfPages = Math.ceil(numOfResults / resultPerPage);
+                                                    let page = req.query.page ? Number(req.query.page) : 1;
+                                                    const startingLimit = (page - 1) * resultPerPage;
+                                                    connection.query(`select * from healthaura_hospitals where hospitalLocation like? or City like? LIMIT ${startingLimit},${resultPerPage}`, ['%' + hospitalCity + '%', '%' + hospitalCity + '%'], (err, allHospitalsData) => {
+                                                        if (err) {
+                                                            res.render('hospital-listing.hbs', { title: `Hospitals | ${hospitalCity}`, authenticated: true, noProfilePic: true, validUser, userCity: true, message: 'No data found for this area, Try to search any nearby area' })
+                                                        }
+                                                        else {
+                                                            let iterator = (page - 5) < 1 ? 1 : page - 5;
+                                                            let endingLink = (iterator + 9) <= numberOfPages ? (iterator + 9) : page + (numberOfPages - page);
+                                                            if (endingLink < (page + 4)) {
+                                                                iterator -= (page + 4) - numberOfPages;
+                                                            }
+                                                            res.render('hospital-listing.hbs', { allHospitalsData, title: `Hospitals | ${hospitalCity}`, authenticated: true, validUser, noProfilePic: true, userCity: true, page, iterator, endingLink, numberOfPages, fullData: true })
+                                                        }
+                                                    })
                                                 }
                                             }
                                         })
@@ -109,8 +174,23 @@ exports.searchHospitalByCity = (req, res) => {
                                                 res.render('hospital-listing.hbs', { title: `Hospitals | ${hospitalCity}`, authenticated: true, profilePic: true, userCity: true, message: 'No data found for this area, Try to search any nearby area', validUser })
                                             }
                                             else {
-
-                                                res.render('hospital-listing.hbs', { allHospitalsData, title: `Hospitals | ${hospitalCity}`, authenticated: true, validUser, profilePic: true, userCity: true, })
+                                                const numOfResults = allHospitalsData.length;
+                                                const numberOfPages = Math.ceil(numOfResults / resultPerPage);
+                                                let page = req.query.page ? Number(req.query.page) : 1;
+                                                const startingLimit = (page - 1) * resultPerPage;
+                                                connection.query(`select * from healthaura_hospitals where hospitalLocation like? or City like? LIMIT ${startingLimit},${resultPerPage}`, ['%' + hospitalCity + '%', '%' + hospitalCity + '%'], (err, allHospitalsData) => {
+                                                    if (err) {
+                                                        res.render('hospital-listing.hbs', { title: `Hospitals | ${hospitalCity}`, authenticated: true, profilePic: true, validUser, userCity: true, message: 'No data found for this area, Try to search any nearby area' })
+                                                    }
+                                                    else {
+                                                        let iterator = (page - 5) < 1 ? 1 : page - 5;
+                                                        let endingLink = (iterator + 9) <= numberOfPages ? (iterator + 9) : page + (numberOfPages - page);
+                                                        if (endingLink < (page + 4)) {
+                                                            iterator -= (page + 4) - numberOfPages;
+                                                        }
+                                                        res.render('hospital-listing.hbs', { allHospitalsData, title: `Hospitals | ${hospitalCity}`, authenticated: true, validUser, profilePic: true, userCity: true, page, iterator, endingLink, numberOfPages, fullData: true })
+                                                    }
+                                                })
                                             }
                                         }
                                     })
@@ -131,7 +211,23 @@ exports.searchHospitalByCity = (req, res) => {
                         }
                         else {
 
-                            res.render('hospital-listing.hbs', { allHospitalsData, title: `Hospitals | ${hospitalCity}`, notAuthenticated: true, noProfilePic: true, noCity: true, })
+                            const numOfResults = allHospitalsData.length;
+                            const numberOfPages = Math.ceil(numOfResults / resultPerPage);
+                            let page = req.query.page ? Number(req.query.page) : 1;
+                            const startingLimit = (page - 1) * resultPerPage;
+                            connection.query(`select * from healthaura_hospitals where hospitalLocation like? or City like? LIMIT ${startingLimit},${resultPerPage}`, ['%' + hospitalCity + '%', '%' + hospitalCity + '%'], (err, allHospitalsData) => {
+                                if (err) {
+                                    res.render('hospital-listing.hbs', { title: `Hospitals | ${hospitalCity}`, notAuthenticated: true, noProfilePic: true, noCity: true, message: 'No data found for this area, Try to search any nearby area' })
+                                }
+                                else {
+                                    let iterator = (page - 5) < 1 ? 1 : page - 5;
+                                    let endingLink = (iterator + 9) <= numberOfPages ? (iterator + 9) : page + (numberOfPages - page);
+                                    if (endingLink < (page + 4)) {
+                                        iterator -= (page + 4) - numberOfPages;
+                                    }
+                                    res.render('hospital-listing.hbs', { allHospitalsData, title: `Hospitals | ${hospitalCity}`, notAuthenticated: true, noProfilePic: true, noCity: true, page, iterator, endingLink, numberOfPages, fullData: true })
+                                }
+                            })
                         }
                     }
                 })
@@ -273,7 +369,7 @@ exports.searchHospital = (req, res) => {
 exports.advanceSearch = (req, res) => {
     const userEnteredCity = req.query.city;
     const userTreatment = req.query.treatment;
-    const resultPerPage = 2;
+    const resultPerPage = 1;
 
     pool.getConnection((err, connection) => {
         if (err) {
@@ -297,13 +393,7 @@ exports.advanceSearch = (req, res) => {
                                     const numOfResults = allHospitalsData.length;
                                     const numberOfPages = Math.ceil(numOfResults / resultPerPage);
                                     let page = req.query.page ? Number(req.query.page) : 1;
-                                    if (page > numberOfPages) {
-                                        // /search/advance-search?city=mumbai&treatment=surgery&page=2
-                                        res.redirect(`/search/advance-search?city=${userEnteredCity}&treatment=${userTreatment}&page=` + encodeURIComponent(numberOfPages));
-                                    }
-                                    else if (page < 1) {
-                                        res.redirect(`/search/advance-search?city=${userEnteredCity}&treatment=${userTreatment}&page=` + encodeURIComponent('1'))
-                                    }
+
                                     const startingLimit = (page - 1) * resultPerPage;
                                     connection.query(`SELECT * FROM healthaura_hospitals WHERE City LIKE? AND treatments LIKE? LIMIT ${startingLimit},${resultPerPage}`, ['%' + userEnteredCity + '%', '%' + userTreatment + '%'], (err, allHospitalsData) => {
                                         if (err) {
@@ -315,7 +405,7 @@ exports.advanceSearch = (req, res) => {
                                             if (endingLink < (page + 4)) {
                                                 iterator -= (page + 4) - numberOfPages;
                                             }
-                                            res.render('hospital-listing.hbs', { allHospitalsData, title: `Hospitals | ${userEnteredCity} for ${userTreatment} treatment`, notAuthenticated: true, noProfilePic: true, noCity: true,  page, iterator, endingLink, numberOfPages });
+                                            res.render('hospital-listing.hbs', { allHospitalsData, title: `Hospitals | ${userEnteredCity} for ${userTreatment} treatment`, notAuthenticated: true, noProfilePic: true, noCity: true, page, iterator, endingLink, numberOfPages, fullData: true });
                                         }
                                     })
 
@@ -339,12 +429,7 @@ exports.advanceSearch = (req, res) => {
                                             const numOfResults = allHospitalsData.length;
                                             const numberOfPages = Math.ceil(numOfResults / resultPerPage);
                                             let page = req.query.page ? Number(req.query.page) : 1;
-                                            if (page > numberOfPages) {
-                                                res.redirect(`/search/advance-search?city=${userEnteredCity}&treatment=${userTreatment}&page=` + encodeURIComponent(numberOfPages));
-                                            }
-                                            else if (page < 1) {
-                                                res.redirect(`/search/advance-search?city=${userEnteredCity}&treatment=${userTreatment}&page=` + encodeURIComponent('1'));
-                                            }
+
                                             const startingLimit = (page - 1) * resultPerPage;
                                             connection.query(`SELECT * FROM healthaura_hospitals WHERE City LIKE? AND treatments LIKE? LIMIT ${startingLimit},${resultPerPage}`, ['%' + userEnteredCity + '%', '%' + userTreatment + '%'], (err, allHospitalsData) => {
                                                 if (err) {
@@ -356,7 +441,7 @@ exports.advanceSearch = (req, res) => {
                                                     if (endingLink < (page + 4)) {
                                                         iterator -= (page + 4) - numberOfPages;
                                                     }
-                                                    res.render('hospital-listing.hbs', { allHospitalsData, title: `Hospitals | ${userEnteredCity} for ${userTreatment} treatment`, notAuthenticated: true, noProfilePic: true, noCity: true, validUser,  page, iterator, endingLink, numberOfPages })
+                                                    res.render('hospital-listing.hbs', { allHospitalsData, title: `Hospitals | ${userEnteredCity} for ${userTreatment} treatment`, notAuthenticated: true, noProfilePic: true, noCity: true, validUser, page, iterator, endingLink, numberOfPages, fullData: true })
                                                 }
                                             })
 
@@ -381,12 +466,7 @@ exports.advanceSearch = (req, res) => {
                                                     const numOfResults = allHospitalsData.length;
                                                     const numberOfPages = Math.ceil(numOfResults / resultPerPage);
                                                     let page = req.query.page ? Number(req.query.page) : 1;
-                                                    if (page > numberOfPages) {
-                                                        res.redirect(`/search/advance-search?city=${userEnteredCity}&treatment=${userTreatment}&page=` + encodeURIComponent(numberOfPages));
-                                                    }
-                                                    else if (page < 1) {
-                                                        res.redirect(`/search/advance-search?city=${userEnteredCity}&treatment=${userTreatment}&page=` + encodeURIComponent('1'));
-                                                    }
+
                                                     const startingLimit = (page - 1) * resultPerPage;
                                                     connection.query(`SELECT * FROM healthaura_hospitals WHERE City LIKE? AND treatments LIKE? LIMIT ${startingLimit},${resultPerPage}`, ['%' + userEnteredCity + '%', '%' + userTreatment + '%'], (err, allHospitalsData) => {
                                                         if (err) {
@@ -398,7 +478,7 @@ exports.advanceSearch = (req, res) => {
                                                             if (endingLink < (page + 4)) {
                                                                 iterator -= (page + 4) - numberOfPages;
                                                             }
-                                                            res.render('hospital-listing.hbs', { allHospitalsData, title: `Hospitals | ${userEnteredCity} for ${userTreatment} treatment`, authenticated: true, validUser, noProfilePic: true, noCity: true,  page, iterator, endingLink, numberOfPages })
+                                                            res.render('hospital-listing.hbs', { allHospitalsData, title: `Hospitals | ${userEnteredCity} for ${userTreatment} treatment`, authenticated: true, validUser, noProfilePic: true, noCity: true, page, iterator, endingLink, numberOfPages, fullData: true })
                                                         }
                                                     })
                                                 }
@@ -418,12 +498,7 @@ exports.advanceSearch = (req, res) => {
                                                     const numOfResults = allHospitalsData.length;
                                                     const numberOfPages = Math.ceil(numOfResults / resultPerPage);
                                                     let page = req.query.page ? Number(req.query.page) : 1;
-                                                    if (page > numberOfPages) {
-                                                        res.redirect(`/search/advance-search?city=${userEnteredCity}&treatment=${userTreatment}&page=` + encodeURIComponent(numberOfPages));
-                                                    }
-                                                    else if (page < 1) {
-                                                        res.redirect(`/search/advance-search?city=${userEnteredCity}&treatment=${userTreatment}&page=` + encodeURIComponent('1'));
-                                                    }
+
                                                     const startingLimit = (page - 1) * resultPerPage;
                                                     connection.query(`SELECT * FROM healthaura_hospitals WHERE City LIKE? AND treatments LIKE? LIMIT ${startingLimit},${resultPerPage}`, ['%' + userEnteredCity + '%', '%' + userTreatment + '%'], (err, allHospitalsData) => {
                                                         if (err) {
@@ -435,7 +510,7 @@ exports.advanceSearch = (req, res) => {
                                                             if (endingLink < (page + 4)) {
                                                                 iterator -= (page + 4) - numberOfPages;
                                                             }
-                                                            res.render('hospital-listing.hbs', { allHospitalsData, title: `Hospitals | ${userEnteredCity} for ${userTreatment} treatment`, authenticated: true, validUser, noProfilePic: true, userCity: true,  page, iterator, endingLink, numberOfPages })
+                                                            res.render('hospital-listing.hbs', { allHospitalsData, title: `Hospitals | ${userEnteredCity} for ${userTreatment} treatment`, authenticated: true, validUser, noProfilePic: true, userCity: true, page, iterator, endingLink, numberOfPages, fullData: true })
                                                         }
                                                     })
                                                 }
@@ -456,12 +531,7 @@ exports.advanceSearch = (req, res) => {
                                                 const numOfResults = allHospitalsData.length;
                                                 const numberOfPages = Math.ceil(numOfResults / resultPerPage);
                                                 let page = req.query.page ? Number(req.query.page) : 1;
-                                                if (page > numberOfPages) {
-                                                    res.redirect(`/search/advance-search?city=${userEnteredCity}&treatment=${userTreatment}&page=` + encodeURIComponent(numberOfPages));
-                                                }
-                                                else if (page < 1) {
-                                                    res.redirect(`/search/advance-search?city=${userEnteredCity}&treatment=${userTreatment}&page=` + encodeURIComponent('1'));
-                                                }
+
                                                 const startingLimit = (page - 1) * resultPerPage;
                                                 connection.query(`SELECT * FROM healthaura_hospitals WHERE City LIKE? AND treatments LIKE? LIMIT ${startingLimit},${resultPerPage}`, ['%' + userEnteredCity + '%', '%' + userTreatment + '%'], (err, allHospitalsData) => {
                                                     if (err) {
@@ -474,7 +544,7 @@ exports.advanceSearch = (req, res) => {
                                                             iterator -= (page + 4) - numberOfPages;
                                                         }
 
-                                                        res.render('hospital-listing.hbs', { allHospitalsData, title: `Hospitals | ${userEnteredCity} for ${userTreatment} treatment`, authenticated: true, validUser, profilePic: true, userCity: true, page, iterator, endingLink, numberOfPages })
+                                                        res.render('hospital-listing.hbs', { allHospitalsData, title: `Hospitals | ${userEnteredCity} for ${userTreatment} treatment`, authenticated: true, validUser, profilePic: true, userCity: true, page, iterator, endingLink, numberOfPages, fullData: true })
                                                     }
                                                 })
                                             }
@@ -499,12 +569,7 @@ exports.advanceSearch = (req, res) => {
                             const numOfResults = allHospitalsData.length;
                             const numberOfPages = Math.ceil(numOfResults / resultPerPage);
                             let page = req.query.page ? Number(req.query.page) : 1;
-                            if (page > numberOfPages) {
-                                res.redirect(`/search/advance-search?city=${userEnteredCity}&treatment=${userTreatment}&page=` + encodeURIComponent(numberOfPages));
-                            }
-                            else if (page < 1) {
-                                res.redirect(`/search/advance-search?city=${userEnteredCity}&treatment=${userTreatment}&page=` + encodeURIComponent('1'));
-                            }
+
                             const startingLimit = (page - 1) * resultPerPage;
                             connection.query(`SELECT * FROM healthaura_hospitals WHERE City LIKE? AND treatments LIKE? LIMIT ${startingLimit},${resultPerPage}`, ['%' + userEnteredCity + '%', '%' + userTreatment + '%'], (err, allHospitalsData) => {
                                 if (err) {
@@ -516,7 +581,7 @@ exports.advanceSearch = (req, res) => {
                                     if (endingLink < (page + 4)) {
                                         iterator -= (page + 4) - numberOfPages;
                                     }
-                                    res.render('hospital-listing.hbs', { allHospitalsData, title: `Hospitals | ${userEnteredCity} for ${userTreatment} treatment`, notAuthenticated: true, noProfilePic: true, noCity: true,  page, iterator, endingLink, numberOfPages })
+                                    res.render('hospital-listing.hbs', { allHospitalsData, title: `Hospitals | ${userEnteredCity} for ${userTreatment} treatment`, notAuthenticated: true, noProfilePic: true, noCity: true, page, iterator, endingLink, numberOfPages, fullData: true })
                                 }
                             })
                         }
@@ -528,3 +593,6 @@ exports.advanceSearch = (req, res) => {
     })
 
 }
+
+
+//

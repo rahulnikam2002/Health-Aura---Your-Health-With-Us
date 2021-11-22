@@ -19,19 +19,19 @@
 
     <section class="HospitalsListCompnent">
 
-        
+
         <section class="resultFetchedData">
             <p class="normalText">Showing Results for - Hospitals</p>
         </section>
 
-        
+
 
         <hr class="divider">
         {{#if message}}
-            <section class="noDataFound">
-                <img src="/img/sad.png" alt="">
-                <p class="normalText">{{message}}</p>
-            </section>
+        <section class="noDataFound">
+            <img src="/img/sad.png" alt="">
+            <p class="normalText">{{message}}</p>
+        </section>
         {{/if}}
 
         <section class="allHospitalsSection">
@@ -64,13 +64,15 @@
         </section>
 
         {{#if numberOfPages}}
-            <p class="numberOfPages hide">{{numberOfPages}}</p>
+        <p class="numberOfPages hide">{{numberOfPages}}</p>
         {{/if}}
 
+        {{#if fullData}}
         <section class="paginationBTNS">
             <button id="previousPage">Previous</button>
             <button id="nextPage">Next</button>
         </section>
+        {{/if}}
 
     </section>
 
@@ -96,11 +98,202 @@
 
 
 <script>
-    
+
     let numberOfPages = document.querySelector('.numberOfPages').innerHTML;
     let lastPage = Number(numberOfPages)
-    console.log(lastPage)
+    let endPage = String(numberOfPages)
+    let allURL = location.search;
 
+if(location.search == NaN || location.search.includes('?page=1')){
+    previousPage.style.display = 'none'
+}
+else if(location.search.includes('?page='+endPage)){
+    nextPage.style.display = 'none'
+}
+
+if(location.search == NaN || location.search.includes('&page=1')){
+    previousPage.style.display = 'none'
+}
+
+if(endPage == 2 || endPage == 1){
+    previousPage.style.display = 'none'
+    nextPage.style.display = 'none'
+
+}
+
+if(!location.href.includes('page')){
+    previousPage.style.display = 'none'
+}
+else if(location.search.includes('&page='+endPage)){
+    nextPage.style.display = 'none'
+}
+
+
+
+    let url = location.search;
+    let a = url.length;
+    {{!-- if (url.includes('&page=')) {
+        let pageNo = url.split('&page=')[1]
+        let currentUserPage = Number(pageNo);
+        if (currentUserPage > lastPage) {
+            let url = location.search;
+            let a = url.split('&page=')[0]
+            location.href = a + "&page=" + lastPage;
+        }
+        if (currentUserPage <= 1) {
+            let url = location.search;
+            let a = url.split('&page=')[0]
+            location.href = a;
+        }
+
+    } --}}
+
+
+    
+
+    if (!url.includes('&treatment=')) {
+            let url = location.search;
+            let a = url.length;
+
+        nextPage.addEventListener('click', () => {
+            if (!url.includes('?page=')) {
+                location.href = 'hospital' + "?page=" + 2;
+            }
+            else if(url.includes('page=')){
+                let pageNo = url.split('?page=')[1]
+                let currentUserPage = Number(pageNo);
+                {{!-- location.href = 'hospital'+ '?page=' + `${currentUserPage + 1}` --}}
+
+                if (currentUserPage >= lastPage) {
+                    let url = location.search;
+                    location.href = 'hospital' + "?page=" + lastPage;
+                }
+                else {
+                    let url = location.search;
+                    location.href = 'hospital' + "?page=" + `${currentUserPage + 1}`;
+                }
+
+            }
+        })
+
+        previousPage.addEventListener('click', () => {
+            let url = location.search;
+            let a = url.length;
+
+            if (url.includes('page=')) {
+                let pageNo = url.split('?page=')[1]
+                let currentUserPage = Number(pageNo);
+                if (currentUserPage <= 1) {
+                    let url = location.search;
+                    location.href = '/hospital?page='+1;
+                }
+                else {
+                    let url = location.search;
+                    location.href = 'hospital' + "?page=" + `${currentUserPage - 1}`;
+                }
+
+            }
+        })
+    }
+    else if(url.includes('&treatment=')){
+        nextPage.addEventListener('click', () => {
+            let url = location.search;
+            let a = url.length;
+
+            if (!url.includes('&page=')) {
+                location.href = url + "&page=" + 2;
+            }
+            if (url.includes('&page=')) {
+                let pageNo = url.split('&page=')[1]
+                let currentUserPage = Number(pageNo);
+                if (currentUserPage >= lastPage) {
+                    let url = location.search;
+                    let a = url.split('&page=')[0]
+                    location.href = a + "&page=" + lastPage;
+                }
+                else {
+                    let url = location.search;
+                    let mainURL = url.split('&page=')[0]
+                    location.href = mainURL + "&page=" + `${currentUserPage + 1}`;
+                }
+
+            }
+        })
+
+
+        previousPage.addEventListener('click', () => {
+            let url = location.search;
+            let a = url.length;
+
+            if (url.includes('&page=')) {
+                let pageNo = url.split('&page=')[1]
+                let currentUserPage = Number(pageNo);
+                if (currentUserPage <= 1) {
+                    let url = location.search;
+                    let a = url.split('&page=')[0]
+                    location.href = a;
+                }
+                else {
+                    let url = location.search;
+                    let mainURL = url.split('&page=')[0]
+                    location.href = mainURL + "&page=" + `${currentUserPage - 1}`;
+                }
+
+            }
+        })
+    }
+
+
+
+let href = location.href;
+if(href.includes('city=')){
+    console.log(true)
+        nextPage.addEventListener('click', () => {
+            let url = location.search;
+            let a = url.length;
+
+            if (!url.includes('&page=')) {
+                location.href = url + "&page=" + 2;
+            }
+            if (url.includes('&page=')) {
+                let pageNo = url.split('&page=')[1]
+                let currentUserPage = Number(pageNo);
+                if (currentUserPage >= lastPage) {
+                    let url = location.search;
+                    let a = url.split('&page=')[0]
+                    location.href = a + "&page=" + lastPage;
+                }
+                else {
+                    let url = location.search;
+                    let mainURL = url.split('&page=')[0]
+                    location.href = mainURL + "&page=" + `${currentUserPage + 1}`;
+                }
+
+            }
+        })
+
+
+        previousPage.addEventListener('click', () => {
+            let url = location.search;
+            let a = url.length;
+
+            if (url.includes('&page=')) {
+                let pageNo = url.split('&page=')[1]
+                let currentUserPage = Number(pageNo);
+                if (currentUserPage <= 1) {
+                    let url = location.search;
+                    let a = url.split('&page=')[0]
+                    location.href = a;
+                }
+                else {
+                    let url = location.search;
+                    let mainURL = url.split('&page=')[0]
+                    location.href = mainURL + "&page=" + `${currentUserPage - 1}`;
+                }
+
+            }
+        })
+    }
 
 
 
