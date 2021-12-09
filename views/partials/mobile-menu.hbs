@@ -10,6 +10,12 @@
                     </div>
                     {{/each}}
                 {{/if}}
+
+                {{#if noProfilePic}}
+                <div class="userAvatar">
+                        <img src="/img/user.png" alt="">
+                    </div>
+                {{/if}}
                 
                 {{#if notAuthenticated}}
                 <div class="userAvatar">

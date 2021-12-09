@@ -170,68 +170,80 @@
 <!-- Search PopUp -->
 <section class="searchPage-hospital">
     <div class="cancelBtn-searchPage">
-        <ion-icon name="close-outline"></ion-icon>
-    </div>
-
-    <div class="searchUpperSection">
-        <div class="searchInput">
-            <form action="/search" method="POST">
-                <ion-icon name="search-outline" class="searchIcon-hospitalSearch"></ion-icon>
-                <input type="text" name="searchhospital" class="HSP-normalSearch" placeholder="Search for Hospitals">
-                <button type="submit">
-                    <ion-icon name="arrow-forward-outline"></ion-icon>
-                </button>
-            </form>
+            <ion-icon name="close-outline"></ion-icon>
         </div>
 
-        <div class="userLocationDetector">
-            <ion-icon name="location-outline"></ion-icon>
-            <div class="icon-text">
-                <p class="title locationDetector">Detect your location</p>
-                <p class="smallText">Using GPS</p>
+        <div class="searchUpperSection">
+            <div class="searchInput">
+                <form action="/search/hospital/hospital" method="GET">
+                    <ion-icon name="search-outline" class="searchIcon-hospitalSearch"></ion-icon>
+                    <input type="text" autocomplete="off" name="hospital" class="HSP-normalSearch"
+                        placeholder="Search for Hospitals">
+                    <button type="submit">
+                        <ion-icon name="arrow-forward-outline"></ion-icon>
+                    </button>
+                </form>
+            </div>
+
+            <div class="userLocationDetector">
+                <ion-icon name="location-outline"></ion-icon>
+                <div class="icon-text">
+                    <p class="title locationDetector">Detect your location</p>
+                    <p class="smallText">Using GPS</p>
+                </div>
             </div>
         </div>
-    </div>
 
-    <hr class="divider">
+        <hr class="divider">
 
-    <div class="advanceSearchHeading">
-        <p class="heading">Advance Search</p>
-        <div class="advanceSearchInput">
-            <form action="/advance-search" method="POST">
-                <div class="userCityName advanceSearchInput">
-                    <ion-icon class="advanceSearchIcon" name="location-outline"></ion-icon>
-                    <input type="text" placeholder="Enter City" class="loglat">
-                </div>
+        <div class="advanceSearchHeading">
+            <p class="heading">Advance Search</p>
+            <div class="advanceSearchInput">
+                <form action="/search/advance-search" method="GET">
+                    <div class="userCityName advanceSearchInput">
+                        <ion-icon class="advanceSearchIcon" name="location-outline"></ion-icon>
+                        <input type="text" autocomplete="off" placeholder="Enter City" name="city">
+                    </div>
 
-                <div class="userTreatmentName advanceSearchInput">
-                    <!-- ASHP => Advance Search Hospiptal page -->
-                    <ion-icon class="advanceSearchIcon treatmentIcon-ASHP" name="heart-half-outline"></ion-icon>
-                    <input type="text" placeholder="Enter City">
-                </div>
+                    <div class="userTreatmentName advanceSearchInput">
+                        <!-- ASHP => Advance Search Hospiptal page -->
+                        <ion-icon class="advanceSearchIcon treatmentIcon-ASHP" name="heart-half-outline"></ion-icon>
+                        <input type="text" autocomplete="off" name="treatment" placeholder="Enter Treatment">
+                    </div>
 
-                <div class="submit-advanceSearch">
-                    <button type="submit">Search</button>
-                </div>
-            </form>
+                    <div class="submit-advanceSearch">
+                        <button type="submit">Search</button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
 
 
-    <hr class="divider dividerSearchPage">
+        <hr class="divider dividerSearchPage">
 
-    <div class="boxMedicaDoctor">
-        <div class="boxDoctor box-common-hda">
-            <img src="/img/doctor (1).png" alt="">
-            <p>Doctors</p>
+        <div class="boxMedicaDoctor">
+            <div class="boxDoctor box-common-hda">
+                <img src="/img/doctor (1).png" alt="">
+                <p>Doctors</p>
+            </div>
+            <div class="boxDoctor box-common-hda">
+                <img src="/img/medicals.png" alt="">
+                <p>Medicals</p>
+            </div>
+            <div class="boxDoctor box-common-hda">
+                <img src="/img/ambulance.png" alt="">
+                <p>Ambulance</p>
+            </div>
         </div>
-        <div class="boxDoctor box-common-hda">
-            <img src="/img/medicals.png" alt="">
-            <p>Medicals</p>
-        </div>
-        <div class="boxDoctor box-common-hda">
-            <img src="/img/ambulance.png" alt="">
-            <p>Ambulance</p>
+
+
+
+        <!-- Transparent background loading effect-->
+    <div class="showLoading">
+        <div class="loadingScreen">
+            <div class="loadingEffect">
+                <img src="/img/XOsX.gif" alt="loadingEffect">
+            </div>
         </div>
     </div>
 
@@ -281,73 +293,10 @@
 
 
 <!-- Menu -->
-<section class="mobileMenu">
-    <div class="upperMobileMenuArea">
-        <ion-icon name="close-outline" class="mobileMenuCloseIcon"></ion-icon>
-        <div class="mobileMenuUPAREA">
-            
-            {{#if profilePic}}
-            {{#each validUser}}
-            <div class="userAvatar">
-                <img src="/uploads/{{this.userImg}}" alt="">
-            </div>
-            {{/each}}
-            {{/if}}
-            {{#if notAuthenticated}}
-            <div class="userAvatar">
-                <img src="/img/user.png" alt="">
-            </div>
-            <div class="MenuPage-userName">
-                <p>Guest User</p>
-                <p>Unknown</p>
-            </div>
-            {{/if}}
-            {{#each validUser}}
-            <div class="MenuPage-userName">
-                <p>{{this.userName}}</p>
-                <p>{{this.userCity}}</p>
-                <a href="/user" class="userProfileBTN"><ion-icon name="chevron-forward-outline"></ion-icon></a>
-            </div>
-            {{/each}}
-        </div>
-    </div>
-    <div class="LowerMobileMenuArea">
-        <div class="lowerMenuItems">
-            {{#if notAuthenticated}}
-            <div class="menuSingleListItem">
-                <img src="/img/login.png" alt="">
-                <a href="/v1/auth/login">SignIn</a>
-            </div>
-            {{/if}}
-            <div class="menuSingleListItem">
-                <img src="/img/home (3).png" alt="">
-                <a href="/">Home</a>
-            </div>
-            <div class="menuSingleListItem">
-                <img src="/img/doctor (3).png" alt="">
-                <a href="/doctorlisting.html">Doctor</a>
-            </div>
-            <div class="menuSingleListItem">
-                <img src="/img/hospital-building.png" alt="">
-                <a href="/hospital">Hospital</a>
-            </div>
-            <div class="menuSingleListItem">
-                <img src="/img/medical-history (1).png" alt="">
-                <a href="#">Medical</a>
-            </div>
-            <div class="menuSingleListItem">
-                <img src="/img/ambulance.png" alt="">
-                <a href="#">Ambulance</a>
-            </div>
-            {{#if authenticated}}
-            <div class="menuSingleListItem">
-                <img src="/img/logout.png" alt="">
-                <a href="/v1/auth/logout">Logout</a>
-            </div>
-            {{/if}}
-        </div>
-    </div>
-</section>
+
+{{> mobile-menu }}
+
+
 <script src="/js/app.js"></script>
 <script src="/js/common.js"></script>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

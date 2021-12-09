@@ -58,9 +58,9 @@ app.use('/hospital', hospitalRoutes);
 app.use('/user', usersRoutes);
 app.use('/search', searchRoutes);
 app.use('/v1/auth/credentials/', changePasswordRoutes);
-app.get('*', (req, res) => {
-    res.render('404.hbs')
-})
+// app.get('*', (req, res) => {
+//     res.render('404.hbs')
+// })
 
 // Running Server => 
 app.listen(port, () => {

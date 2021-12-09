@@ -25,12 +25,15 @@ router.get('/', isAdmin, adminController.adminDashboard);
 router.get('/add-new-hospital', isAdmin, adminController.addNewHospitalPage);
 router.get('/all-hospitals', isAdmin, adminController.allHospitalPage);
 
+
 const cpUpload = upload.fields([{ name: 'multipleImgs', maxCount: 5 }, { name: 'featuredImg'}])
 
 router.post('/add-new-hospital', isAdmin, cpUpload, adminController.addNewHospital);
 
 
 router.get('/all-users', isAdmin, adminController.allUsersPage)
+
+router.get('/hospital/delete/:hospitalName', isAdmin, adminController.deleteHospital)
 
 module.exports = router;
 

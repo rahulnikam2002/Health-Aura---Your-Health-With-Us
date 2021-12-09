@@ -7,8 +7,6 @@ const userLocationSelector = document.querySelector('.userLocationDetector');
 const showLoading = document.querySelector('.showLoading');
 let loglat = document.querySelector('.loglat');
 
-
-
 searchIcon.addEventListener('click', () => {
     hospitalSearchPage.style.display = 'block';
 })

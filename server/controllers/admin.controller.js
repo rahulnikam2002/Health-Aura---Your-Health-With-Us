@@ -177,6 +177,25 @@ exports.allHospitalPage = (req, res) => {
     })
 }
 
+exports.deleteHospital = (req, res) => {
+    const hospitalName = req.params.hospitalName;
+    pool.getConnection((err, connection) => {
+        if (err) {
+            res.render('dashboard-all-hospital-page.hbs', { message: "Some error occurred while deleting the Hospital" })
+        }
+        else {
+            connection.query('DELETE from healthaura_hospitals WHERE hospitalName = ?', [hospitalName], (err, deletedHospital) => {
+                if (err) {
+                    res.render('dashboard-all-hospital-page.hbs', { message: "Some error occurred while deleting the Hospital" })
+                }
+                else {
+                    res.redirect('/dashboard/all-hospitals')
+                }
+            })
+        }
+    })
+}
+
 exports.allUsersPage = (req, res) => {
     pool.getConnection((err, connection) => {
         if (err) {
@@ -204,7 +223,7 @@ exports.allUsersPage = (req, res) => {
                                         res.render('dashboard-all-users.hbs', { admin, allUsers, title: "All Users | HealthAura", noProfileImg: true })
                                     }
                                     else {
-                                        res.render('dashboard-all-users.hbs', { admin,allUsers, title: "All Users | HealthAura", ProfileImg: true })
+                                        res.render('dashboard-all-users.hbs', { admin, allUsers, title: "All Users | HealthAura", ProfileImg: true })
                                     }
                                 }
                             })

@@ -309,6 +309,7 @@ i, ion-icon, a, div, p, h1, h2, h3, li, section {
 
 .UHS-featuredImg {
     width: 100%;
+    position: relative;
 }
 
 .UHS-right input[type=file] {
@@ -339,6 +340,45 @@ i, ion-icon, a, div, p, h1, h2, h3, li, section {
     border: none;
     border-radius: 6px;
     outline: none;
+}
+
+.uploadedSuccessfullyIcon{
+    width: 21px;
+    position: absolute;
+    top: 19px;
+    right: 7px;
+}
+.uploadedSuccessfullyMultipleImg{
+    display: none;
+}
+
+.uploadedSuccessfullyFeaturedImg{
+    display: none;
+}
+
+
+.successMsg{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 30%;
+    background-color: var(--primary);
+    padding: 20px 10px;
+    margin: 15px;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    color: var(--white);
+    border-radius: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+
+.successMsg ion-icon{
+    font-size: 25px;
+    position: relative;
+    bottom: 24px;
+    cursor: pointer;
 }
 
 /* View all Hospitals Page */
@@ -400,4 +440,10 @@ td, th {
 .graphs{
     display: flex;
     justify-content: space-between;
+}
+
+.successMsg{
+    display: none;
+    transition: 3s ease-in-out;
+    right: 0;
 }
