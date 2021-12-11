@@ -17,7 +17,7 @@ exports.searchHospitalByCity = (req, res) => {
     const hospitalCity = req.query.city;
     const hospitalName = req.query.hospital;
     const treatment = req.query.treatment;
-    const resultPerPage = 1;
+    const resultPerPage = 10;
 
     pool.getConnection((err, connection) => {
         if (err) {
@@ -241,7 +241,7 @@ exports.searchHospitalByCity = (req, res) => {
 //Search only by hospial name
 exports.searchHospital = (req, res) => {
     const hospitalName = req.query.hospital;
-    const resultPerPage = 1;
+    const resultPerPage = 10;
 
     pool.getConnection((err, connection) => {
         if (err) {
@@ -465,7 +465,7 @@ exports.searchHospital = (req, res) => {
 exports.advanceSearch = (req, res) => {
     const userEnteredCity = req.query.city;
     const userTreatment = req.query.treatment;
-    const resultPerPage = 1;
+    const resultPerPage = 10;
 
     pool.getConnection((err, connection) => {
         if (err) {

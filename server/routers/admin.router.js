@@ -18,6 +18,7 @@ let storage = multer.diskStorage({
     }
 });
 var upload = multer({ storage: storage })
+var editUpload = multer({ storage: storage })
 
 
 
@@ -27,13 +28,16 @@ router.get('/all-hospitals', isAdmin, adminController.allHospitalPage);
 
 
 const cpUpload = upload.fields([{ name: 'multipleImgs', maxCount: 5 }, { name: 'featuredImg'}])
+const editUploadImg = editUpload.fields([{ name: 'multipleImgs', maxCount: 5 }, { name: 'featuredImg'}])
 
 router.post('/add-new-hospital', isAdmin, cpUpload, adminController.addNewHospital);
 
 
 router.get('/all-users', isAdmin, adminController.allUsersPage)
 
-router.get('/hospital/delete/:hospitalName', isAdmin, adminController.deleteHospital)
+router.get('/hospital/delete/:hospitalName', isAdmin, adminController.deleteHospital);
+router.get('/hospital/edit/:hospitalName', isAdmin, adminController.editHospital);
+router.post('/edit/add/hospital/:hospitalName', isAdmin, editUploadImg, adminController.editHospitalData);
 
 module.exports = router;
 

@@ -239,6 +239,84 @@ exports.allUsersPage = (req, res) => {
     })
 }
 
+exports.editHospital = (req, res) => {
+    const hospitalName = req.params.hospitalName;
+    pool.getConnection((err, connection) => {
+        if(err) throw err;
+        connection.query('select * from healthaura_hospitals where hospitalName = ?', [hospitalName], (err, hospitalData) => {
+            if(err){
+                res.redirect('/dashboard/all-hospitals')
+            }
+            else{
+                const userToken = req.cookies.userToken;
+            if (userToken) {
+                verify(userToken, process.env.SECRET_KEY, (err, decoded) => {
+                    if (err) {
+                        res.redirect('/auth/login/')
+                    }
+                    else {
+                        let userEmail = decoded.result;
+                        connection.query(`SELECT * FROM healthaura_users WHERE userEmail = ?`, [userEmail], (err, admin) => {
+                            if (err) {
+                                res.redirect('/')
+                                console.log(err)
+                            }
+                            else {
+                                // const hospitalNameFromDB = hospitalData[0].hospitalName;
+                                connection.query('SELECT * FROM healthaura_hospitals', (err, allHospitalsData) => {
+                                    console.log(admin[0].userImg)
+                                    let userProfileImg = admin[0].userImg;
+                                    if (userProfileImg.length == 0) {
+                                        res.render('edit-hospital.hbs', { hospitalData, allHospitalsData, admin, title: "View all Hospital | HealthAura", noProfileImg: true })
+                                    }
+                                    else {
+                                        
+                                        res.render('edit-hospital.hbs', { hospitalData, allHospitalsData, admin, title: "View all Hospital | HealthAura", ProfileImg: true })
+                                    }
+                                })
+                            }
+                        })
+                    }
+                })
+            }
+            }
+        })
+    })
+}
+
+exports.editHospitalData = (req,res) => {
+    const { hospitalName, hospitalPhone, hospitalCity, hospitalAddress, hospitalType, hospitalIframe, hospitalTreatments, hospitalAbout, hospitalMeta } = req.body;
+    let paramsHospitalName = req.params.hospitalName
+    pool.getConnection((err, connection) => {
+        if (err) {
+            console.log(err);
+            throw err;
+        }
+        else {
+            let userAddedImgs = req.files;
+            let hospitalFeaturedImg = userAddedImgs.featuredImg[0].filename;
+            let imgString = "";
+            for (let i = 0; i < userAddedImgs.multipleImgs.length; i++) {
+                imgString = `${imgString}` + `${userAddedImgs.multipleImgs[i].filename},`
+            }
+            let multipleHospital = imgString;
+
+            connection.query('update healthaura_hospitals set hospitalName = ?, phoneNumber = ?, hospitalLocation = ?, city = ?, hospitalType = ?, hospitalIframe = ?, treatments = ?, hospitalAbout = ?, hospitalImgs = ?, featuredImg = ?, hospitalMeta = ? where hospitalName = ?', [hospitalName, hospitalPhone, hospitalAddress, hospitalCity, hospitalType, hospitalIframe, hospitalTreatments, hospitalAbout, multipleHospital, hospitalFeaturedImg, hospitalMeta, req.params.hospitalName], (err, hospital) => {
+                if (err) {
+                    res.render('edit-hospital.hbs', { message: "Error occurred while adding the hospital try again" })
+                    console.log(err);
+                }
+                else {
+
+                    res.redirect(`/dashboard/all-hospitals`)
+                }
+            })
+        }
+    })
+
+}
 
 
-// Checking GIT VC
+//nobal pune1.jpg,nobal pune2.jpg,nobal pune3.jpg,
+
+//nobal pune1.jpg

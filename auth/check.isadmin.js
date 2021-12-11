@@ -1,5 +1,5 @@
 const { verify } = require('jsonwebtoken')
-const mySql = require('mysql')
+const mySql = require('mysql');
 
 // DataBase Configuration and Connecting =>
 const pool = mySql.createPool({
@@ -19,15 +19,14 @@ exports.isAdmin = (req, res, next) => {
         if (userToken) {
             verify(userToken, process.env.SECRET_KEY, (err, decoded) => {
                 if (err) {
-                    res.redirect('/');
+                    res.redirect('/');  // Redirecting to homepage...
                 }
                 else {
                     let userEmail = decoded.result;
 
                     connection.query('SELECT role FROM healthaura_users WHERE userEmail = ?', [userEmail], (err, userRole) => {
                         if (err) {
-                            res.redirect('/')
-
+                            res.redirect('/')  // Redirecting to homepage...
                         }
                         else {
                             if (userRole[0].role == 'admin') {
