@@ -11,28 +11,28 @@
         {{> dashboard-header}}
 
         <div class="pageHeading">
-            <h1>All hospitals</h1>
+            <h1>All Doctors</h1>
             <div class="addHospitalBtn-dashboard">
-                <a href="/dashboard/add-new-hospital"><button>Add New Hospital</button></a>
+                <a href="/dashboard/doctor/add/doctor"><button>Add New Doctor</button></a>
             </div>
         </div>
 
         <div class="allHospitalDataList">
             <table>
                 <tr>
-                    <th>Hospital Name</th>
-                    <th>City Name</th>
+                    <th>Doctor Name</th>
+                    <th>Phone Number</th>
                     <th>Actions</th>
                 </tr>
 
-            {{#each allHospitalsData}}
+            {{#each allDoctors}}
                 <tr>
-                    <td>{{this.hospitalName}}</td>
-                    <td>{{this.City}}</td>
+                    <td>{{this.doctorName}}</td>
+                    <td>{{this.doctorNumber}}</td>
                     <td class="actionBtns-AHL">  {{!-- AHL => All Hospital Listing --}}
-                        <a href="/hospital/{{this.hospitalName}}">View</a>
-                        <a href="/dashboard/hospital/edit/{{this.hospitalName}}">Edit</a>
-                        <a href="/dashboard/hospital/delete/{{this.hospitalName}}">Delete</a>
+                        <a href="/doctor/{{this.doctorName}}">View</a>
+                        <a href="/dashboard/doctor/edit/{{this.doctorName}}">Edit</a>
+                        <a href="/dashboard/doctor/delete/{{this.doctorName}}">Delete</a>
                     </td>
                 </tr>
             {{/each}}

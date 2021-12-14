@@ -8,14 +8,16 @@
     </div>
     <div class="db-right">
         {{> dashboard-header}}
+            {{#each singleDoctorInfo}}
         <div class="pageHeading">
-            <h1>Adding New Doctor</h1>
+            <h1>Editing Dr. {{this.doctorName}}</h1>
         </div>
         <div class="addDoctorFrom">
-            <form action="/dashboard/doctor/add/doctor" method="POST" enctype="multipart/form-data">
+            <form action="/dashboard/doctor/updating/{{this.doctorName}}" method="POST" enctype="multipart/form-data">
                 {{> doctor-add-edit-form}}
             </form>
         </div>
+            {{/each}}
     </div>
     </div>
 

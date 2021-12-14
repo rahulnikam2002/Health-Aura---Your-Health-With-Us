@@ -1,26 +1,26 @@
 <div class="uploadHospitalFormSection">
                 <div class="UHS-left">
                     <div class="hospitalName singleField">
-                        <input type="text" name="doctorName" placeholder="Doctor's name">
+                        <input type="text" value="{{this.doctorName}}" name="doctorName" placeholder="Doctor's name">
                     </div>
                     <div class="hospital-phone-location col2_fields">
-                        <input class="leftField"  type="text" name="doctorPhone" placeholder="Doctor's Contact">
-                        <input class="rightField" type="text" name="doctorAddress" placeholder="Address">
+                        <input class="leftField" value="{{this.doctorNumber}}"  type="text" name="doctorPhone" placeholder="Doctor's Contact">
+                        <input class="rightField" value="{{this.doctorAddress}}" type="text" name="doctorAddress" placeholder="Address">
                     </div>
                     <div class="hospital-city-type col2_fields">
-                        <input  class="leftField" type="text" name="doctorCity" placeholder="City">
-                        <input  class="rightField" type="text" name="mainSpeciality" placeholder="Main Speciality">
+                        <input  class="leftField" value="{{this.doctorCity}}" type="text" name="doctorCity" placeholder="City">
+                        <input  class="rightField" value="{{this.mainSpeciality}}" type="text" name="mainSpeciality" placeholder="Main Speciality">
                     </div>
                     <div class="hospital-city-type col2_fields">
-                        <input  class="leftField" type="text" name="totalPatients" placeholder="Total Patients">
-                        <input  class="rightField" type="text" name="totalExperience" placeholder="Total Experience">
-                        <input  class="rightField" type="text" name="totalRating" placeholder="Total Rating">
+                        <input  class="leftField" value="{{this.totalPatients}}" type="text" name="totalPatients" placeholder="Total Patients">
+                        <input  class="rightField" value="{{this.totalExperience}}" type="text" name="totalExperience" placeholder="Total Experience">
+                        <input  class="rightField" value="{{this.totalRating}}" type="text" name="totalRating" placeholder="Total Rating">
                     </div>
                     <div class="hospital-treatments singleField">
-                        <textarea style="resize: none;" name="doctorBiography" id="" cols="30" rows="5" placeholder="Doctor's Biography"></textarea>
+                        <textarea style="resize: none;" name="doctorBiography" id="" cols="30" rows="5" placeholder="Doctor's Biography">{{this.doctorBiography}}"</textarea>
                     </div>
                     <div class="hospital-About singleField">
-                        <textarea style="resize: none;" name="specialities" id="" cols="30" rows="5" placeholder="Doctor's specialities separate by commas (,)"></textarea>
+                        <textarea style="resize: none;" name="specialities" id="" cols="30" rows="5" placeholder="Doctor's specialities separate by commas (,)">{{this.specialities}}</textarea>
                     </div>
                 </div>
 

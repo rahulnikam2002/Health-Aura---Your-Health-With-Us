@@ -22,5 +22,12 @@ let upload = multer({ storage: storage })
 router.get('/add/doctor', isAdmin, adminDoctorController.addDoctorPage);
 router.post('/add/doctor', isAdmin, upload.single('featuredImg'), adminDoctorController.addDoctor);
 
+router.get("/all-doctors", isAdmin, adminDoctorController.allDoctorsPage);
+
+router.get("/delete/:doctorName", isAdmin, adminDoctorController.deleteDoctor);
+router.get("/edit/:doctorName", isAdmin, adminDoctorController.editDoctor);
+router.post("/updating/:doctorName", isAdmin, upload.single('featuredImg'), adminDoctorController.updatingDoctor);
+
+
 
 module.exports = router;
