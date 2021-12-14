@@ -17,6 +17,12 @@ let storage = multer.diskStorage({
       cb(null, file.originalname);
     }
 });
+
+
+
+
+
+
 var upload = multer({ storage: storage })
 var editUpload = multer({ storage: storage })
 
