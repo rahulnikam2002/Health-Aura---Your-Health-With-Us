@@ -31,8 +31,8 @@
                     <td>{{this.doctorNumber}}</td>
                     <td class="actionBtns-AHL">  {{!-- AHL => All Hospital Listing --}}
                         <a href="/doctor/{{this.doctorName}}">View</a>
-                        <a href="/dashboard/doctor/edit/{{this.doctorName}}">Edit</a>
-                        <a href="/dashboard/doctor/delete/{{this.doctorName}}">Delete</a>
+                        <a href="/dashboard/doctor/edit/{{this.id}}/{{this.doctorName}}">Edit</a>
+                        <a href="/dashboard/doctor/delete/{{this.id}}/{{this.doctorName}}">Delete</a>
                     </td>
                 </tr>
             {{/each}}

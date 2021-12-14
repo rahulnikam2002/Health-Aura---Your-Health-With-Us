@@ -24,9 +24,10 @@ router.post('/add/doctor', isAdmin, upload.single('featuredImg'), adminDoctorCon
 
 router.get("/all-doctors", isAdmin, adminDoctorController.allDoctorsPage);
 
-router.get("/delete/:doctorName", isAdmin, adminDoctorController.deleteDoctor);
-router.get("/edit/:doctorName", isAdmin, adminDoctorController.editDoctor);
-router.post("/updating/:doctorName", isAdmin, upload.single('featuredImg'), adminDoctorController.updatingDoctor);
+router.get("/delete/:id/:doctorName", isAdmin, adminDoctorController.deleteDoctor);
+router.get("/edit/:id/:doctorName", isAdmin, adminDoctorController.editDoctor);
+router.post("/updating/:id/:doctorName", isAdmin, upload.single('featuredImg'), adminDoctorController.updatingDoctor);
+
 
 
 

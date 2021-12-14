@@ -107,7 +107,7 @@ exports.addDoctor = (req, res) => {
             message: "Something went wrong! Please try again.",
           });
         } else {
-          res.redirect("/dashboard");
+          res.redirect("/dashboard/doctor/all-doctors");
         }
       }
     );
@@ -135,17 +135,14 @@ exports.allDoctorsPage = (req, res) => {
 exports.deleteDoctor = (req, res) => {
   pool.getConnection((err, connection) => {
     if (err) throw err;
-    connection.query("DELETE FROM healthaura_doctors WHERE doctorName = ?", [req.params.doctorName], (err, deletedDoctor) => {
+    connection.query("DELETE FROM healthaura_doctors WHERE id = ?", [req.params.id], (err, deletedDoctor) => {
       if (err) {
         res.render("dashboard-all-doctors.hbs", {
           title: "All doctors | HealthAura",
           message: "Something went wrong",
         });
       } else {
-        res.render("dashboard-all-doctors.hbs", {
-          title: "All doctors | HealthAura",
-          message: `${req.params.doctorName} got Deleted successfully.`
-        });
+        res.redirect("/dashboard/doctor/all-doctors");
       }
     });
   });
@@ -188,7 +185,7 @@ exports.updatingDoctor = (req, res) => {
     pool.getConnection((err, connection) => {
       if (err) throw err;
       connection.query(
-        "UPDATE healthaura_doctors SET doctorName = ?, mainSpeciality = ?, doctorCity = ?, doctorNumber = ?, totalPatients = ?, totalExperience = ?, totalRating = ?, doctorBiography = ?, specialities = ?, doctorAddress = ?, doctorImage = ?",
+        "UPDATE healthaura_doctors SET doctorName = ?, mainSpeciality = ?, doctorCity = ?, doctorNumber = ?, totalPatients = ?, totalExperience = ?, totalRating = ?, doctorBiography = ?, specialities = ?, doctorAddress = ?, doctorImage = ? WHERE id = ?",
         [
           doctorName,
           mainSpeciality,
@@ -201,6 +198,7 @@ exports.updatingDoctor = (req, res) => {
           specialities,
           doctorAddress,
           doctorImage,
+          req.params.id
         ],
         (err, doctorAdded) => {
           if (err) {
@@ -208,7 +206,7 @@ exports.updatingDoctor = (req, res) => {
               message: "Something went wrong! Please try again.",
             });
           } else {
-            res.redirect("/dashboard/doctor/all-doctors");
+            res.redirect ("/dashboard/doctor/all-doctors");
           }
         }
       );

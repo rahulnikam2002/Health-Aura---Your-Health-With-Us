@@ -52,6 +52,7 @@ const usersRoutes = require('./server/routers/user.router')
 const changePasswordRoutes = require('./server/routers/passwordChange.router')
 const searchRoutes = require('./server/routers/search.router')
 const adminDoctor = require('./server/routers/doctor.admin.router')
+const clientDoctor = require('./server/routers/doctor.client.router')
 app.use('/', homeRouter);
 app.use('/v1/auth', authRouter);
 app.use('/dashboard', adminRoutes);
@@ -60,6 +61,7 @@ app.use('/user', usersRoutes);
 app.use('/search', searchRoutes);
 app.use('/v1/auth/credentials/', changePasswordRoutes);
 app.use('/dashboard/doctor', adminDoctor)
+app.use('/doctor', clientDoctor)
 // app.get('*', (req, res) => {
 //     res.render('404.hbs')
 // })

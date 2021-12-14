@@ -1,0 +1,93 @@
+<link rel="stylesheet" href="/style/style.css">
+<link rel="stylesheet" href="/style/menu.css">
+
+<header>
+        <nav class="headerArea">
+            <div class="menuIcon">
+                <ion-icon name="menu-outline"></ion-icon>
+            </div>
+            <div class="pageTitle">
+                <h1>HealthAura</h1>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Body -->
+    <!-- SearchBar -->
+    <section class="searchbarSection">
+        <div class="searchBar-Homepage">
+            <div class="searchIcon">
+                <ion-icon name="search-outline"></ion-icon>
+            </div>
+            <div class="searchText">
+                <p>Search for Doctors</p>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="docListingComponent">
+        <div class="doctorListi">
+            {{#each allDoctorsData}}
+            <div class="singleDocCard">
+                <div class="leftDocImg">
+                    <img src="/uploads/{{this.doctorImage}}" alt="">
+                </div>
+                <div class="rightDocInfo">
+                    <a href="/singledoctor.html">
+                        <h1>{{this.doctorName}}</h1>
+                    </a>
+                    <p>{{this.mainSpeciality}} - {{this.doctorCity}}</p>
+                    <div class="docRating">
+                        <ion-icon name="star-outline"></ion-icon>
+                        <p>{{this.totalRating}}</p>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </section>
+
+
+    <section class="searchPage-hospital">
+        <div class="cancelBtn-searchPage">
+            <ion-icon name="close-outline"></ion-icon>
+        </div>
+
+        <div class="searchUpperSection">
+            <div class="searchInput">
+                <form action="/search" method="POST">
+                    <ion-icon name="search-outline" class="searchIcon-hospitalSearch"></ion-icon>
+                    <input type="text" name="searchhospital" class="HSP-normalSearch" placeholder="Enter Treatment">
+                    <button type="submit">
+                        <ion-icon name="arrow-forward-outline"></ion-icon>
+                    </button>
+                </form>
+            </div>
+
+
+
+            <div class="boxMedicaDoctor">
+                <div class="boxDoctor box-common-hda">
+                    <img src="/img/hospital.png" alt="">
+                    <p>Hospital</p>
+                </div>
+                <div class="boxDoctor box-common-hda">
+                    <img src="/img/medicals.png" alt="">
+                    <p>Medicals</p>
+                </div>
+                <div class="boxDoctor box-common-hda">
+                    <img src="/img/ambulance.png" alt="">
+                    <p>Ambulance</p>
+                </div>
+            </div>
+
+    </section>
+
+     <!-- Menu -->
+        {{>mobile-menu}}
+
+
+    <script src="/js/DP.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
