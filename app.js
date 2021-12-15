@@ -8,7 +8,7 @@ require("dotenv").config();
 
 // Creating Server =>
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8000;
 
 // MiddleWares
 app.use(express.json());
@@ -61,7 +61,7 @@ app.use('/user', usersRoutes);
 app.use('/search', searchRoutes);
 app.use('/v1/auth/credentials/', changePasswordRoutes);
 app.use('/dashboard/doctor', adminDoctor)
-app.use('/doctor', clientDoctor)
+app.use('/doctors', clientDoctor)
 // app.get('*', (req, res) => {
 //     res.render('404.hbs')
 // })

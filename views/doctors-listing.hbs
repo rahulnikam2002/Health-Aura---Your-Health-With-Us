@@ -34,7 +34,7 @@
                     <img src="/uploads/{{this.doctorImage}}" alt="">
                 </div>
                 <div class="rightDocInfo">
-                    <a href="/singledoctor.html">
+                    <a href="/doctors/{{this.id}}/{{this.doctorName}}">
                         <h1>{{this.doctorName}}</h1>
                     </a>
                     <p>{{this.mainSpeciality}} - {{this.doctorCity}}</p>
@@ -56,9 +56,9 @@
 
         <div class="searchUpperSection">
             <div class="searchInput">
-                <form action="/search" method="POST">
+                <form action="/doctors/search" method="GET">
                     <ion-icon name="search-outline" class="searchIcon-hospitalSearch"></ion-icon>
-                    <input type="text" name="searchhospital" class="HSP-normalSearch" placeholder="Enter Treatment">
+                    <input type="text" name="treatment" class="HSP-normalSearch" placeholder="Enter Treatment">
                     <button type="submit">
                         <ion-icon name="arrow-forward-outline"></ion-icon>
                     </button>
@@ -84,6 +84,17 @@
 
     </section>
 
+    {{#if numberOfPages}}
+        <p class="numberOfPages hide">{{numberOfPages}}</p>
+    {{/if}}
+
+    {{#if fullData}}
+        <section class="paginationBTNS">
+            <button id="previousPage">Previous</button>
+            <button id="nextPage">Next</button>
+        </section>
+    {{/if}}
+
      <!-- Menu -->
         {{>mobile-menu}}
 
@@ -91,3 +102,56 @@
     <script src="/js/DP.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script>
+        let numberOfPages = document.querySelector('.numberOfPages').innerHTML;
+        const nextPageBtn = document.getElementById('nextPage');
+        const previousPageBtn = document.getElementById('previousPage');
+        console.log(nextPageBtn, previousPageBtn)
+        console.log(location.search)
+
+        function isFirstPage(){
+            if(location.search == '' || location.search.includes('page=1')){
+                previousPageBtn.style.display = "none";
+                console.log(true)
+            }
+        }
+
+        const isLastPage = () => {
+            if(location.search.includes(`page=${numberOfPages}`)){
+                nextPageBtn.style.display = "none";
+            }
+        }
+
+        isFirstPage()
+        isLastPage()
+        
+                let currentPage = Number(location.search.split('page=')[1]);
+        nextPageBtn.addEventListener('click',function(){
+            if(location.search == '' || location.search.includes('page=1')){
+                location.href = `/doctors?page=2`
+            }
+            else if(location.href.includes('doctors/search')){
+                if(!location.search.includes('&page=')){
+                    let treatmentValue = location.search.split("=")[1];
+                    location.href = `/doctors/search?treatment=${treatmentValue}&page=2`
+                }
+                else if(location.search.includes('&page=')){
+                    let queryValue = location.search.split("&")[0];
+                    let treatmentValue = queryValue.split('=')[1]
+                    {{!-- console.log(treatmentValue) --}}
+                    
+
+                    location.href = `/doctors/search?treatment=${treatmentValue}&page=${++currentPage}`
+                }
+            }
+            else{
+                location.href = `doctors?page=${++currentPage}`
+            }
+        })
+
+        previousPageBtn.addEventListener('click', () => {
+                location.href = `doctors?page=${--currentPage}`
+        
+        })
+
+    </script>
