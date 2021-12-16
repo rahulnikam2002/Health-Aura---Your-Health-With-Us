@@ -117,16 +117,56 @@ exports.addDoctor = (req, res) => {
 exports.allDoctorsPage = (req, res) => {
   pool.getConnection((err, connection) => {
     if (err) throw err;
-    connection.query("SELECT * FROM healthaura_doctors", (err, allDoctors) => {
+    connection.query("select * from healthaura_doctors", (err, allDoctors) => {
       if (err) {
-        res.render("dashboard-all-doctors.hbs", {
-          title: "All doctors | HealthAura",
-          message: "Something went wrong",
-        });
+        res.redirect("/dashboard/all-hospitals");
       } else {
-        res.render("dashboard-all-doctors.hbs", { allDoctors,
-          title: "All doctors | HealthAura",
-        });
+        const userToken = req.cookies.userToken;
+        if (userToken) {
+          verify(userToken, process.env.SECRET_KEY, (err, decoded) => {
+            if (err) {
+              res.redirect("/auth/login/");
+            } else {
+              let userEmail = decoded.result;
+              connection.query(
+                `SELECT * FROM healthaura_users WHERE userEmail = ?`,
+                [userEmail],
+                (err, admin) => {
+                  if (err) {
+                    res.redirect("/");
+                    console.log(err);
+                  } else {
+                    // const hospitalNameFromDB = hospitalData[0].hospitalName;
+                    connection.query(
+                      "SELECT * FROM healthaura_doctors",
+                      (err, allDoctorsData) => {
+                        console.log(admin[0].userImg);
+                        let userProfileImg = admin[0].userImg;
+                        if (userProfileImg.length == 0) {
+                          res.render("dashboard-all-doctors.hbs", {
+                            allDoctors,
+                            allDoctorsData,
+                            admin,
+                            title: "Add New Doctor | HealthAura",
+                            noProfileImg: true,
+                          });
+                        } else {
+                          res.render("dashboard-all-doctors.hbs", {
+                            allDoctors,
+                            allDoctorsData,
+                            admin,
+                            title: "Add New Doctor | HealthAura",
+                            ProfileImg: true,
+                          });
+                        }
+                      }
+                    );
+                  }
+                }
+              );
+            }
+          });
+        }
       }
     });
   });

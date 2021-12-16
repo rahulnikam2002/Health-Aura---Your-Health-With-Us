@@ -114,6 +114,11 @@
                 previousPageBtn.style.display = "none";
                 console.log(true)
             }
+
+            if(location.search.includes('treatment') && !location.search.includes('&page=')){
+                previousPageBtn.style.display = "none";
+
+            }
         }
 
         const isLastPage = () => {
@@ -127,30 +132,37 @@
         
                 let currentPage = Number(location.search.split('page=')[1]);
         nextPageBtn.addEventListener('click',function(){
-            if(location.search == '' || location.search.includes('page=1')){
-                location.href = `/doctors?page=2`
+            if(location.search.length == 0){
+                location.href = `/doctors?page=${2}`
             }
-            else if(location.href.includes('doctors/search')){
+            if(location.href.includes('?treatment=')){
                 if(!location.search.includes('&page=')){
                     let treatmentValue = location.search.split("=")[1];
                     location.href = `/doctors/search?treatment=${treatmentValue}&page=2`
                 }
-                else if(location.search.includes('&page=')){
+                if(location.href.includes('&page')){
                     let queryValue = location.search.split("&")[0];
                     let treatmentValue = queryValue.split('=')[1]
-                    {{!-- console.log(treatmentValue) --}}
-                    
-
                     location.href = `/doctors/search?treatment=${treatmentValue}&page=${++currentPage}`
                 }
             }
-            else{
+            if(location.href.includes('?page=')){
                 location.href = `doctors?page=${++currentPage}`
             }
         })
 
         previousPageBtn.addEventListener('click', () => {
-                location.href = `doctors?page=${--currentPage}`
+            if(location.href.includes('search?treatment=') && location.href.includes('page')){
+                let path = location.search.split('=')[1]
+                let treatment = path.split('&')[0]
+                let currentPage = Number(location.search.split('=')[2])
+                console.log(treatment)
+                console.log(true)
+                location.href = `/doctors/search?treatment=${treatment}&page=${--currentPage}`
+            }
+            else{
+                location.href = `/doctors?page=${--currentPage}`
+            }
         
         })
 
