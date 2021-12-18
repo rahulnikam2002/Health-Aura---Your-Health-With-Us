@@ -1,6 +1,8 @@
+
+
+<link rel="stylesheet" href="/style/animation.css">
 <link rel="stylesheet" href="/style/menu.css">
 <link rel="stylesheet" href="/style/style.css">
-<link rel="stylesheet" href="/style/animation.css">
 <link rel="stylesheet" href="/style/userProfile.css">
 
 <section class="userProfileSection">
@@ -40,6 +42,8 @@
     {{/if}}
 
 {{#if noCity}}
+    <div class="isUserCity" style="display: none;">false</div>
+
     {{#each User}}
     <div class="userDetails-pp">
         <div class="userLocation-pp userDetailsCred">
@@ -57,7 +61,7 @@
     <div class="profileOptio">
         <div class="userWebDetails">
             <ion-icon name="bed-outline"></ion-icon>
-            <p>Show Hospitals</p>
+            <p><a href="/hospital">Show Hospitals</a></p>
         </div>
         <div class="userWebDetails">
             <ion-icon name="bandage-outline"></ion-icon>
@@ -76,7 +80,7 @@
             <ion-icon name="key-outline"></ion-icon>
             <p><a href="/v1/auth/credentials/change-password">Change Password</a></p>
         </div>
-        <div class="userWebDetails">
+        <div class="userWebDetails userSettingAreaBtn">
             <ion-icon name="settings-outline"></ion-icon>
             <p>Setting</p>
         </div>
@@ -88,10 +92,37 @@
         </div>
     </div>
 
+    <ion-modal is-open="true" id="sheet-modal">
+  <ion-content>Modal Content</ion-content>
+</ion-modal>
+
+
+<section class="modalArea">
+<div class="modal">
+    <div class="header">
+        <p>Enter City</p>
+    </div>
+    <hr>
+    <div class="inputs">
+        <form action="/user/update/userdata/{{this.userName}}/city" method="get">
+            <input type="text" name="userCity" placeholder="Enter Your City">
+            <div class="submit_cancel_btn">
+
+            <button id="cancel">Cancel</button>
+            <button id="saveCityBTn" type="submit">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+</section>
+
     {{/each}}
 {{/if}}
 
 {{#if userCity}}
+
+    <div class="isUserCity" style="display: none;">true</div>
+
     {{#each User}}
     <div class="userDetails-pp">
         <div class="userLocation-pp userDetailsCred">
@@ -107,9 +138,9 @@
     <hr>
 
     <div class="profileOptio">
-        <div class="userWebDetails">
+        <div id="searchHospitalInUserCity" class="userWebDetails">
             <ion-icon name="bed-outline"></ion-icon>
-            <p>Show Hospitals in {{this.userCity}}</p>
+            <p id="userSearchHospitalDetail">Show Hospitals in {{this.userCity}}</p>
         </div>
         <div class="userWebDetails">
             <ion-icon name="bandage-outline"></ion-icon>
@@ -127,7 +158,7 @@
             <ion-icon name="key-outline"></ion-icon>
             <p><a href="/v1/auth/credentials/change-password">Change Password</a></p>
         </div>
-        <div class="userWebDetails">
+        <div class="userWebDetails userSettingAreaBtn">
             <ion-icon name="settings-outline"></ion-icon>
             <p>Setting</p>
         </div>
@@ -139,9 +170,109 @@
         </div>
     </div>
 
+
+    {{!--  --}}
+    
+<section class="settingPageModal">
+    <div class="settingModal">
+        <div class="setting_modal_header">
+            <div class="setting_modal_title">
+                <h2 class="setting_header_title">Setting</h2>
+            </div>
+            <div class="goBackArrow closeSettingModal">
+                <ion-icon name="close-outline"></ion-icon>
+            </div>
+        </div>
+        <hr>
+        <div class="settingContentArea">
+            <div class="content_item">
+                <div class="itemName">
+                    <p>Edit Profile</p>
+                </div>
+                <div class="calltoActionBtn_setting">
+                    <ion-icon name="chevron-forward-outline"></ion-icon>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="content_item contactAdminBtn">
+                <div class="itemName">
+                    <p>Contact Admin</p>
+                </div>
+                <div class="calltoActionBtn_setting">
+                    <ion-icon name="chevron-forward-outline"></ion-icon>
+                </div>
+            </div>
+
+            <hr>
+
+
+            <div class="content_item reportBugBtn">
+                <div class="itemName">
+                    <p>Report Bug</p>
+                </div>
+                <div class="calltoActionBtn_setting">
+                    <ion-icon name="chevron-forward-outline"></ion-icon>
+                </div>
+            </div>
+
+            <hr>
+
+             <div class="content_item">
+                <div class="itemName">
+                    <p>Logout</p>
+                </div>
+                <div class="calltoActionBtn_setting">
+                    <ion-icon name="chevron-forward-outline"></ion-icon>
+                </div>
+            </div>
+
+        </div>
+        
+    {{!-- Contact admin box --}}
+    <div class="contactAdmin slide-left">
+            <div class="contact_admin_form">
+                <form action="" method="get">
+                    <textarea name="" id="" cols="15" rows="5" placeholder="Your message for admin..."></textarea>
+                    <div class="contactAdminBtns_modalOpen">
+                    <button type="submit" class="closeBtn_contactAdmin">Cancel</button>
+                    <button type="submit" class="sendMsg_toAdmin">Send Message</button>
+                    </div>
+                </form>
+                <p class="note_contactAdmin"><span>Note:</span> This message will be sent to Admin via this Email - {{this.userEmail}}</p>
+            </div>
+        </div>
+        
+
+
+{{!-- report bug box --}}
+    <div class=" reportBug slide-left">
+            <div class="report_bug_form">
+                <form action="" method="get">
+                    <textarea name="" id="" cols="15" rows="5" placeholder="What exactly you found wrong in this app..."></textarea>
+                    <div class="report_bug_modalOpen">
+                    <button type="submit" class="closeBtn_ReportBug">Cancel</button>
+                    <button type="submit" class="sendMsg_toAdmin">Report Bug</button>
+                    </div>
+                </form>
+                <p class="note_contactAdmin"><span>Note:</span> This will sent Email to Health Aura Developers Team.</p>
+            </div>
+        </div>
+        
+    </div>
+    </div>
+
+</section>
+
+    {{!--  --}}
+
     {{/each}}
 {{/if}}
 </section>
+
+
+
 
 
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
@@ -152,9 +283,95 @@
 
 
     const goBack = document.querySelector('.goBack');
+    const userWithoutCity = document.getElementById("userWithoutCity");
+    const isUserCity = document.querySelector('.isUserCity').innerHTML;
+
+
+if(isUserCity == "true"){
+    const searchHospitalInUserCity = document.getElementById('searchHospitalInUserCity')
+    const userSearchHospitalDetail = document.getElementById("userSearchHospitalDetail").innerText
+
+    let userCity = userSearchHospitalDetail.split(' ').splice(-1).toString()
+    console.log(userCity)
+
+    searchHospitalInUserCity.addEventListener("click", () => {
+        location.href = `/search/hospital/city?city=${userCity}`
+    })
+}
+    
+    
 
     goBack.addEventListener('click', () => {
         history.go(-1);
+    })
+
+
+    if(isUserCity == "false"){
+    const userLocationpp = document.querySelector(".userLocation-pp")
+    const modalArea = document.querySelector(".modalArea");
+    const cancel = document.getElementById('cancel')
+
+    userLocationpp.addEventListener('click', () => {
+        modalArea.style.display = 'flex';
+    })
+
+    cancel.addEventListener("click", (e) => {
+        e.preventDefault()
+        modalArea.style.display = "none"
+    })
+    }
+
+
+    const userSettingAreaBtn = document.querySelector(".userSettingAreaBtn");
+    const settingPageModal = document.querySelector(".settingPageModal");
+    const closeSettingModal = document.querySelector(".closeSettingModal");
+    const settingModal = document.querySelector(".settingModal");
+
+    userSettingAreaBtn.addEventListener("click", () => {
+        settingPageModal.style.display = "block"
+    })
+
+
+    closeSettingModal.addEventListener("click", () => {
+        settingModal.classList.add("slide-out-bottom");
+        settingPageModal.style.display = "none"
+    })
+
+
+
+    const contactAdminBtn = document.querySelector(".contactAdminBtn")
+    const contactAdmin = document.querySelector(".contactAdmin")
+    const settingContentArea = document.querySelector(".settingContentArea")
+    const closeBtn_contactAdmin = document.querySelector(".closeBtn_contactAdmin")
+    const setting_header_title = document.querySelector(".setting_header_title")
+    const reportBugBtn = document.querySelector(".reportBugBtn")
+    const reportBug = document.querySelector(".reportBug")
+    const closeBtn_ReportBug = document.querySelector(".closeBtn_ReportBug")
+
+    contactAdminBtn.addEventListener("click", () => {
+        contactAdmin.style.display = "block"
+        settingContentArea.style.display = "none"
+        setting_header_title.innerText = "Contact Admin"
+    })
+
+    closeBtn_contactAdmin.addEventListener("click", (e) => {
+        e.preventDefault()
+        contactAdmin.style.display = "none";
+        settingContentArea.style.display = "block";
+        setting_header_title.innerText = "Setting"
+    })
+
+    reportBugBtn.addEventListener("click", () => {
+        settingContentArea.style.display = "none"
+        reportBug.style.display = "block"
+        setting_header_title.innerText = "Report bug"
+    })
+
+    closeBtn_ReportBug.addEventListener("click", (e) => {
+        e.preventDefault();
+        reportBug.style.display = "block"
+        settingContentArea.style.display = "block";
+        setting_header_title.innerText = "Setting"
     })
 
 </script>

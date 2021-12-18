@@ -1,13 +1,45 @@
-
-.FullContent{
-    animation: 1s ease-out 0s 1 slideInFromLeft;
+.FullContent {
+  animation: 1s ease-out 0s 1 slideInFromLeft;
 }
 
 @keyframes slideInFromLeft {
-    0% {
-      transform: translateY(-100%);
-    }
-    100% {
-      transform: translateY(0);
-    }
+  0% {
+    transform: translateY(-100%);
   }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.settingModal {
+  animation: 1s ease 0s 1 slideInFromBottom both;
+}
+
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(100%);
+  }
+
+  96% {
+    transform: translateY(10%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+
+.slide-left {
+  animation: 1s ease 0s 1 slide-left both;
+}
+
+@keyframes slide-left {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

@@ -92,3 +92,216 @@ body {
     margin-right: 10px;
     font-size: 25px;
 }
+
+.modal{
+    max-width: 70%;
+    width: 100%;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    background-color: white;
+   
+}
+
+.modal > .header{
+    text-align: center;
+    padding: 10px 0;
+}
+
+.modal > .inputs{
+    padding: 10px 10px
+}
+
+.modal > .inputs > form > input{
+    width: 100%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid var(--grey-color);
+    outline: none;
+    font-size: 14px;
+    text-align: center;
+    font-family: poppins;
+    padding: 10px 0px;
+    margin: 5px auto;
+    margin-right: 5px;
+}
+
+.submit_cancel_btn{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+
+#saveCityBTn{
+    border: none;
+    width: 48%;
+    border-radius: 6px;
+    outline: none;
+    font-size: 14px;
+    font-family: poppins;
+    padding: 6px 0px;
+    margin: 15px auto;
+    background-color: var(--primary);
+    color: var(--white);
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+#cancel{
+    border: none;
+    width: 48%;
+    border-radius: 6px;
+    outline: none;
+    font-size: 14px;
+    font-family: poppins;
+    padding: 6px 0px;
+    margin: 15px auto;
+    background-color: var(--primary);
+    color: var(--white);
+    cursor: pointer;
+}
+
+
+.modalArea{
+    height: 100vh;
+    display: flex;
+    backdrop-filter: blur(3px) saturate(180%);
+    background-color: rgb(186 180 180 / 75%);
+    border: 1px solid rgba(209, 213, 219, 0.3);
+    width: 100%;
+    position: fixed;
+    top: 0;
+    display: none;
+}
+
+
+.settingPageModal{
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    backdrop-filter: blur(3px) saturate(180%);
+    background-color: rgba(220, 220, 220, 0.75);
+    display: none;
+}
+
+.settingPageModal > .settingModal{
+    height: 55vh;
+    background-color: rgb(255, 255, 255);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+
+.setting_modal_header{
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+}
+
+.goBackArrow > ion-icon{
+    font-size: 35px;
+    top: 3px;
+    position: relative;
+}
+
+.setting_modal_title > h2{
+    font-weight: 500;
+    font-size: 25px;
+}
+
+.content_item{
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 8px 0;
+}
+
+.itemName{
+    font-size: 20px;
+}
+
+.calltoActionBtn_setting{
+    font-size: 25px;
+    position: relative;
+    top: 4px;
+}
+
+.contactAdmin, .reportBug{
+    padding: 0px 15px;
+    display: none;
+    margin: 22px 0px 0px 0px;
+}
+
+.contactAdmin_footer{
+    font-size: 25px;
+    color: var(--primary);
+}
+
+.closeBtn_contactAdmin, .closeBtn_ReportBug{
+    border: none;
+    width: 48%;
+    border-radius: 6px;
+    outline: none;
+    font-size: 14px;
+    font-family: poppins;
+    padding: 10px 0px;
+    margin: 7px auto;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(0, 0, 0, 0.15) 0px 0px 0px 1px;
+    background-color: white;
+    color: var(--dark-color);
+    cursor: pointer;
+    text-align: center;
+}
+
+.contact_admin_form > form > textarea, .report_bug_form > form > textarea{
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(0, 0, 0, 0.15) 0px 0px 0px 1px;
+    border: none;
+    border-radius: 6px;
+    resize: none;
+    padding: 5px;
+    outline:none;
+    font-size: 18px;
+    font-family: poppins;
+}
+
+
+.contactAdminBtns_modalOpen, .report_bug_modalOpen{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.contact_admin_form .sendMsg_toAdmin, .report_bug_modalOpen .sendMsg_toAdmin{
+    border: none;
+    width: 48%;
+    border-radius: 6px;
+    outline: none;
+    font-size: 14px;
+    font-family: poppins;
+    padding: 10px 0px;
+    margin: 7px auto;
+    background-color: var(--primary);
+    color: var(--white);
+    cursor: pointer;
+}
+
+
+.note_contactAdmin{
+    text-align: center;
+    padding: 10px 5px;
+}
+
+.note_contactAdmin > span {
+    color: var(--primary);
+}

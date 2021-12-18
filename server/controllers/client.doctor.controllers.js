@@ -19,7 +19,7 @@ const pool = mySql.createPool({
 // }
 
 exports.doctorListingPage = (req, res) => {
-  const resultPerPage = 1;
+  const resultPerPage = 10;
 
   pool.getConnection((err, connection) => {
     if (err) {
@@ -506,7 +506,7 @@ exports.singleDoctorPage = (req, res) => {
 
 exports.searchDoctor = (req,res) => {
   const treatmentName = req.query.treatment;
-  const resultPerPage = 1;
+  const resultPerPage = 10;
 
   pool.getConnection((err, connection) => {
     if (err) {

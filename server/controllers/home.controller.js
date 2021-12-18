@@ -41,13 +41,17 @@ exports.homePage = (req, res) => {
                                     if (userCity.length == 0) {
                                         res.render('home.hbs', { validUser, authenticated: true, noProfilePic: true, noCity: true, title: `HealthAura | Complete Health Care System` })
                                     }
-                                    res.render('home.hbs', { validUser, authenticated: true, noProfilePic: true, userCity: true, title: `HealthAura | Complete Health Care System` })
+                                    else{
+                                        res.render('home.hbs', { validUser, authenticated: true, noProfilePic: true, userCity: true, title: `HealthAura | Complete Health Care System` })
+                                    }
                                 }
                                 else {
                                     if (userCity.length == 0) {
                                         res.render('home.hbs', { validUser, authenticated: true, profilePic: true, noCity: true, title: `HealthAura | Complete Health Care System` })
                                     }
-                                    res.render('home.hbs', { validUser, authenticated: true, profilePic: true, userCity: true, title: `HealthAura | Complete Health Care System` })
+                                    else{
+                                        res.render('home.hbs', { validUser, authenticated: true, profilePic: true, userCity: true, title: `HealthAura | Complete Health Care System` })
+                                    }
                                 }
                             }
 
@@ -63,7 +67,7 @@ exports.homePage = (req, res) => {
         })
     }
     else {
-        res.render('home.hbs', { notAuthenticated: true })
+        res.render('home.hbs', { notAuthenticated: true, title: `HealthAura | Complete Health Care System` })
         console.log('notAuthenticated 3rd')
 
     }
