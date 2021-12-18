@@ -219,7 +219,7 @@
 
             <hr>
 
-             <div class="content_item">
+             <div class="content_item logoutUser">
                 <div class="itemName">
                     <p>Logout</p>
                 </div>
@@ -233,8 +233,8 @@
     {{!-- Contact admin box --}}
     <div class="contactAdmin slide-left">
             <div class="contact_admin_form">
-                <form action="" method="get">
-                    <textarea name="" id="" cols="15" rows="5" placeholder="Your message for admin..."></textarea>
+                <form action="/user/contact-admin/send/message" method="get">
+                    <textarea name="userMessageToAdmin" id="" cols="15" rows="5" placeholder="Your message for admin..."></textarea>
                     <div class="contactAdminBtns_modalOpen">
                     <button type="submit" class="closeBtn_contactAdmin">Cancel</button>
                     <button type="submit" class="sendMsg_toAdmin">Send Message</button>
@@ -249,8 +249,8 @@
 {{!-- report bug box --}}
     <div class=" reportBug slide-left">
             <div class="report_bug_form">
-                <form action="" method="get">
-                    <textarea name="" id="" cols="15" rows="5" placeholder="What exactly you found wrong in this app..."></textarea>
+                <form action="/user/report/bug" method="get">
+                    <textarea name="reportBugMsg" id="" cols="15" rows="5" placeholder="What exactly you found wrong in this app..."></textarea>
                     <div class="report_bug_modalOpen">
                     <button type="submit" class="closeBtn_ReportBug">Cancel</button>
                     <button type="submit" class="sendMsg_toAdmin">Report Bug</button>
@@ -347,6 +347,7 @@ if(isUserCity == "true"){
     const reportBugBtn = document.querySelector(".reportBugBtn")
     const reportBug = document.querySelector(".reportBug")
     const closeBtn_ReportBug = document.querySelector(".closeBtn_ReportBug")
+    const logoutUser = document.querySelector(".logoutUser")
 
     contactAdminBtn.addEventListener("click", () => {
         contactAdmin.style.display = "block"
@@ -372,6 +373,10 @@ if(isUserCity == "true"){
         reportBug.style.display = "block"
         settingContentArea.style.display = "block";
         setting_header_title.innerText = "Setting"
+    })
+
+    logoutUser.addEventListener("click", () => {
+        location.href = '/logout'
     })
 
 </script>
